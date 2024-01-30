@@ -11,7 +11,6 @@
 <div align="center">
 <img alt="Static Badge" src="https://img.shields.io/badge/Java-ec2025?style=flat-square&logo=java&logoColor=white">
 <img alt="Static Badge" src="https://img.shields.io/badge/Android-34A853?style=flat-square&logo=android&logoColor=white">
-<img alt="Static Badge" src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=figma&logoColor=white">
 </div>
 
 # Commit Conventions
