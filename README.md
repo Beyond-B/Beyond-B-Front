@@ -1,4 +1,4 @@
-# Beyond-B-front
+# Beyond-B-Front
 경계선 지능장애 아동을 위한 교육 서비스 앱
 
 # 🥰 **프론트** 팀 소개
