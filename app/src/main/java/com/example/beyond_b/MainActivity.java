@@ -3,30 +3,77 @@ package com.example.beyond_b;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
+import com.example.beyond_b.book.BookFragment;
+import com.example.beyond_b.chat.ChatFragment;
+import com.example.beyond_b.diary.DiaryFragment;
+import com.example.beyond_b.my_page.MyPageFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout);
-    }
+        setContentView(R.layout.activity_main);
 
-    public void onButton1Clicked(View v){
-        Toast.makeText(this, "확인1 버튼이 눌렸어요.", Toast.LENGTH_LONG).show();
-    }
+        BottomNavigationView navigationBarView = findViewById(R.id.bottom_navigation);
+        navigationBarView.setItemIconTintList(null);
 
-    public void onButton2Clicked(View v){
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://m.naver.com"));
-        startActivity(myIntent);
-    }
+        transferTo(DiaryFragment.newInstance("param1", "param2"));
 
-    public void onButton3Clicked(View v){
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://tel:010-1800-1800"));
-        startActivity(myIntent);
+        navigationBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.page_1) {
+                    transferTo(DiaryFragment.newInstance("param1", "param2"));
+                    return true;
+                }
+
+                if (itemId == R.id.page_2) {
+                    transferTo(ChatFragment.newInstance("param1", "param2"));
+                    return true;
+                }
+
+                if (itemId == R.id.page_3) {
+                    transferTo(BookFragment.newInstance("param1", "param2"));
+                    return true;
+                }
+
+                if (itemId == R.id.page_4) {
+                    transferTo(MyPageFragment.newInstance("param1", "param2"));
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+        navigationBarView.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+
+            }
+        });
+
+    }
+    public void transferTo(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment, null)
+                .setReorderingAllowed(true)
+                .commit();
     }
 }
+
