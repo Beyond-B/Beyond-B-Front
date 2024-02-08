@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="design_bottom_navigation_height" tools:override="true">25dp</dimen>
+    <dimen name="design_fab_size_normal" tools:override="true">50dp</dimen>
+    <dimen name="design_fab_img_size" tools:override="true">50dp</dimen>
 </resources>
