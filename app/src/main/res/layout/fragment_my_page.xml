@@ -121,14 +121,13 @@
                 android:id="@+id/txLogoutDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/pretendard_regular"
+                android:onClick="onLogoutClick"
                 android:paddingTop="10dp"
                 android:text="로그아웃"
-                android:textSize="15sp"
-                android:onClick="onLogoutClick"/>
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/txWithdrawalDialog"
