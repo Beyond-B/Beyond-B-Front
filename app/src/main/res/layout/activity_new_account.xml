@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sign_up.NewAccountActivity">
+
+    <ImageView
+        android:layout_width="246dp"
+        android:layout_height="42dp"
+        android:src="@drawable/tv_create_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="130dp"/>
+
+    <View
+        android:id="@+id/new_account_line1"
+        android:layout_width="240dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="300dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/new_account_line2"
+        android:layout_width="240dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="360dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/new_account_line3"
+        android:layout_width="240dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="420dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/new_account_line4"
+        android:layout_width="240dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="480dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/new_account_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="username"
+        app:layout_constraintBottom_toTopOf="@+id/new_account_line1"
+        app:layout_constraintStart_toStartOf="@+id/new_account_line1" />
+
+    <EditText
+        android:id="@+id/new_account_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="age"
+        app:layout_constraintBottom_toTopOf="@+id/new_account_line2"
+        app:layout_constraintStart_toStartOf="@+id/new_account_line2" />
+
+    <EditText
+        android:id="@+id/new_account_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="email adrress"
+        app:layout_constraintBottom_toTopOf="@+id/new_account_line3"
+        app:layout_constraintStart_toStartOf="@+id/new_account_line3" />
+
+    <EditText
+        android:id="@+id/new_account_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="password"
+        app:layout_constraintBottom_toTopOf="@+id/new_account_line4"
+        app:layout_constraintStart_toStartOf="@+id/new_account_line4" />
+
+    <RelativeLayout
+        android:id="@+id/new_account_signup_btn"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="530dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".sign_up.SignUpActivity">
+
+        <android.widget.Button
+            android:layout_width="280dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_round_button"
+            android:backgroundTint="#86D780"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="Sign Up"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_regular"
+        android:text=" &#64;Beyond:B "
+        android:textColor="#919191"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

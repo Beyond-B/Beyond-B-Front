@@ -13,6 +13,12 @@
         android:theme="@style/Theme.BeyondB"
         tools:targetApi="31">
         <activity
+            android:name=".sign_up.NewAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".sign_up.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
