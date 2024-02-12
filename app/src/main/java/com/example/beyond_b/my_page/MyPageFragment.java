@@ -1,6 +1,7 @@
 package com.example.beyond_b.my_page;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.NumberPicker;
 
 import com.example.beyond_b.databinding.FragmentMyPageBinding;
 
@@ -64,12 +66,11 @@ public class MyPageFragment extends Fragment {
         binding = FragmentMyPageBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        //연령수정 캘린더 호출
+        //연령수정 스피너 호출
         binding.txCorrectAge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment = new DatePickerFragment();
-                dialogFragment.show(getSupportFragmentManager(), "datePicker");
+                ageDialog();
             }
         });
 
@@ -77,15 +78,7 @@ public class MyPageFragment extends Fragment {
         binding.txLogoutDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setTitle("로그아웃")
-                        .setMessage("정말 로그아웃 하시겠습니까?")
-                        .setPositiveButton("로그아웃하기", setLogout(v.getRootView()) )
-                        .setNegativeButton("잘못 눌렀어요", null);
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                logoutDialog();
             }
         });
 
@@ -93,18 +86,63 @@ public class MyPageFragment extends Fragment {
         binding.txWithdrawalDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setTitle("회원탈퇴")
-                        .setMessage("회원탈퇴 하시겠습니까?")
-                        .setPositiveButton("회원탈퇴하기", onClickWithdrawal(v.getRootView()) )
-                        .setNegativeButton("잘못 눌렀어요", null);
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                withdrawal();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+//                builder.setTitle("회원탈퇴")
+//                        .setMessage("회원탈퇴 하시겠습니까?")
+//                        .setPositiveButton("회원탈퇴하기", onClickWithdrawal(v.getRootView()) )
+//                        .setNegativeButton("잘못 눌렀어요", null);
+//
+//                AlertDialog dialog = builder.create();
+//                dialog.show();
             }
         });
 
         return view;
+    }
+
+    //연령수정 처리 코드, 나중에 selectedNumber는 api로 넘겨야 함
+    private int selectedNumber = 0;
+    private void ageDialog() {
+        NumberPickerFragment numberPickerDialog = NumberPickerFragment.newInstance(selectedNumber, new NumberPickerFragment.NumberPickerDialogListener() {
+            @Override
+            public void onNumberPicked(int value) {
+                selectedNumber = value;
+                binding.txAge.setText(String.valueOf(selectedNumber)+"세");
+            }
+        });
+
+        numberPickerDialog.show(getChildFragmentManager(), "numberPicker");
+
+    }
+
+    //로그아웃 처리 코드
+    private void logoutDialog() {
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance("정말 로그아웃 하시겠습니까?", "로그아웃");
+        dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
+            @Override
+            public void onPositiveButtonClick(DialogFragment dialog) {
+                // '네' 버튼 클릭 시 수행할 작업
+            }
+
+            @Override
+            public void onNegativeButtonClick(DialogFragment dialog) {
+                // '아니오' 버튼 클릭 시 수행할 작업
+                dialog.dismiss();
+            }
+        });
+        dialog.show(getChildFragmentManager(), "logoutDialog");
+        /*
+        Dialog dialog = CustomDialogFragment.newInstance()
+        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+        builder.setTitle("로그아웃")
+                .setMessage("정말 로그아웃 하시겠습니까?")
+                .setPositiveButton("로그아웃하기", setLogout(v.getRootView()) )
+                .setNegativeButton("잘못 눌렀어요", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        */
     }
 
     private FragmentManager getSupportFragmentManager() {
@@ -112,7 +150,23 @@ public class MyPageFragment extends Fragment {
     }
 
     // 회원탈퇴 처리 코드
-    private DialogInterface.OnClickListener onClickWithdrawal(View rootView) {
+    private void withdrawal() {
+
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance("정말 회원탈퇴 하시겠습니까?", "회원탈퇴");
+        dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
+            @Override
+            public void onPositiveButtonClick(DialogFragment dialog) {
+                // '네' 버튼 클릭 시 수행할 작업
+            }
+
+            @Override
+            public void onNegativeButtonClick(DialogFragment dialog) {
+                // '아니오' 버튼 클릭 시 수행할 작업
+                dialog.dismiss();
+            }
+        });
+        dialog.show(getChildFragmentManager(), "withdrawalDialog");
+
 //        AlertDialog.Builder builder = new AlertDialog.Builder(rootView.getContext());
 //        builder.setTitle("회원탈퇴")
 //                .setMessage("정말 회원탈퇴 하시겠습니까?")
@@ -121,7 +175,6 @@ public class MyPageFragment extends Fragment {
 //
 //        AlertDialog dialog = builder.create();
 //        dialog.show();
-        return null;
     }
 
 
@@ -136,9 +189,6 @@ public class MyPageFragment extends Fragment {
         return null;
     }
 
-    public void viewDialogue(View view){
-
-    }
 
 
     @Override
