@@ -7,14 +7,21 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/dialogMessage"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_medium"
-        android:padding="30dp"
-        android:text="정말 로그아웃 하시겠습니까?"
-        android:textAlignment="center"
-        android:textSize="19sp" />
+        android:paddingLeft="30dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:text="연령수정"
+        android:textAlignment="textStart"
+        android:textSize="17sp" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
+        android:layout_width="match_parent"
+        android:layout_height="152dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/pretendard_semibold"
-            android:text="아니오"
+            android:text="닫기"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
             android:textSize="15sp" />
@@ -39,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/pretendard_semibold"
-            android:text="네"
+            android:text="수정"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
             android:textSize="15sp" />
@@ -48,3 +55,5 @@
 
 
 </LinearLayout>
+
+

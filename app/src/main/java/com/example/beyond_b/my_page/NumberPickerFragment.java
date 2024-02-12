@@ -1,80 +1,77 @@
 package com.example.beyond_b.my_page;
 
+
 import android.app.AlertDialog;
 import android.app.Dialog;
+
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.NumberPicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import com.example.beyond_b.databinding.FragmentNumberPickerDialogBinding;
 
-import com.example.beyond_b.databinding.FragmentDialogCustomBinding;
 
-public class CustomDialogFragment extends DialogFragment {
+public class NumberPickerFragment extends DialogFragment {
 
-    private static final String ARG_MESSAGE = "message";
-//    private static final String ARG_POSITIVE_BUTTON_TEXT = "positiveButtonText";
+    private static final String ARG_CURRENT_VALUE = "currentValue";
 
-    public static CustomDialogFragment newInstance(String message, String positiveButtonText) {
-        CustomDialogFragment fragment = new CustomDialogFragment();
+    public interface NumberPickerDialogListener {
+        void onNumberPicked(int value);
+    }
+
+    private NumberPickerDialogListener listener;
+
+    public static NumberPickerFragment newInstance(int currentValue, NumberPickerDialogListener listener) {
+        NumberPickerFragment fragment = new NumberPickerFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_MESSAGE, message);
-//        args.putString(ARG_POSITIVE_BUTTON_TEXT, positiveButtonText);
+        args.putInt(ARG_CURRENT_VALUE, currentValue);
         fragment.setArguments(args);
+        fragment.setNumberPickerListener(listener);
         return fragment;
     }
 
-    public interface DialogListener {
-        void onPositiveButtonClick(DialogFragment dialog);
-        void onNegativeButtonClick(DialogFragment dialog);
-    }
-
-    private DialogListener listener;
-
-    public void setDialogListener(DialogListener listener){
+    public void setNumberPickerListener(NumberPickerDialogListener listener) {
         this.listener = listener;
     }
 
-    private FragmentDialogCustomBinding binding;
+    private FragmentNumberPickerDialogBinding binding;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        binding = FragmentDialogCustomBinding.inflate(inflater, null, false);
-        View view = binding.getRoot();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        binding = FragmentNumberPickerDialogBinding.inflate(inflater, null, false);
+        View view = binding.getRoot();
         builder.setView(view);
 
-        // 내용 설정
-        TextView messageTextView = binding.dialogMessage;
-        if (getArguments() != null) {
-            String message = getArguments().getString(ARG_MESSAGE);
-            messageTextView.setText(message);
-        }
+        NumberPicker numberPicker = binding.numberPicker;
+        numberPicker.setMinValue(7);
+        numberPicker.setMaxValue(19);
+        int currentValue = getArguments().getInt(ARG_CURRENT_VALUE, 0);
+        numberPicker.setValue(currentValue);
 
-        // '네' 버튼 설정
+
         binding.btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onPositiveButtonClick(CustomDialogFragment.this);
+                    listener.onNumberPicked(binding.numberPicker.getValue());
+                    dismiss();
                 }
             }
         });
 
-        // '아니오' 버튼 설정
-        binding.btnNo.setOnClickListener(new View.OnClickListener() {
+        binding.btnNo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.onNegativeButtonClick(CustomDialogFragment.this);
-                }
+                dismiss();
             }
         });
 
@@ -100,4 +97,3 @@ public class CustomDialogFragment extends DialogFragment {
     }
 
 }
-
