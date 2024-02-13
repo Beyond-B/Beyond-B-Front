@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sign_up.SignUpActivity">
+    tools:context=".sign_up.SignUpActivity"
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/textView"
@@ -19,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/signup_imageView"
         android:layout_width="204dp"
         android:layout_height="54dp"
         android:layout_marginTop="170dp"
@@ -29,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/singup_line1"
+        android:id="@+id/signup_line1"
         android:layout_width="240dp"
         android:layout_height="0.5dp"
         android:layout_marginTop="360dp"
@@ -42,32 +43,35 @@
         android:id="@+id/signup_line2"
         android:layout_width="240dp"
         android:layout_height="0.5dp"
+        android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="430dp"
-        android:background="#000000"/>
+        />
 
     <EditText
         android:id="@+id/signup_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:inputType="textEmailAddress"
         android:hint="email adress"
-        app:layout_constraintBottom_toTopOf="@+id/singup_line1"
-        app:layout_constraintStart_toStartOf="@+id/singup_line1" />
+        app:layout_constraintBottom_toTopOf="@+id/signup_line1"
+        app:layout_constraintStart_toStartOf="@+id/signup_line1" />
 
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:inputType="textPassword"
         android:hint="password"
         app:layout_constraintBottom_toTopOf="@+id/signup_line2"
         app:layout_constraintStart_toStartOf="@+id/signup_line2" />
 
     <RelativeLayout
-        android:id="@+id/singup_btn"
+        android:id="@+id/signup_btn"
         android:layout_width="280dp"
         android:layout_height="50dp"
         android:layout_marginTop="475dp"
@@ -97,7 +101,8 @@
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/singup_btn"/>
+        app:layout_constraintTop_toBottomOf="@+id/signup_btn"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sign_up.NewAccountActivity">
+    tools:context=".sign_up.NewAccountActivity"
+    android:background="#FFFFFF">
 
     <ImageView
         android:layout_width="246dp"
@@ -79,6 +80,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="email adrress"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/new_account_line3"
         app:layout_constraintStart_toStartOf="@+id/new_account_line3" />
 
@@ -88,6 +90,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="password"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/new_account_line4"
         app:layout_constraintStart_toStartOf="@+id/new_account_line4" />
 
