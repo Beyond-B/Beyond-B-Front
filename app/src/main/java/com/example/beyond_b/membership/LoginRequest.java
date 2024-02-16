@@ -81,6 +81,9 @@ public class LoginRequest {
 
                         callback.onLoginResponse(isSuccess, message);
                     }
+                    else{
+                        callback.onLoginResponse(isSuccess, message);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

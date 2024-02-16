@@ -64,8 +64,12 @@ public class LogInActivity extends AppCompatActivity implements LoginRequest.Log
             Intent intent = new Intent(LogInActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
-            // 로그인 실패 처리
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(LogInActivity.this, message, Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
