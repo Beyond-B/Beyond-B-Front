@@ -6,6 +6,8 @@ android {
     namespace = "com.example.beyond_b"
     compileSdk = 34
 
+
+
     defaultConfig {
         applicationId = "com.example.beyond_b"
         minSdk = 24

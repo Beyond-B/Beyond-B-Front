@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_round"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_medium"
+        android:paddingLeft="30dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:text="연령수정"
+        android:textAlignment="textStart"
+        android:textSize="17sp" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
+        android:layout_width="match_parent"
+        android:layout_height="152dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnNo"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="닫기"
+            android:textColor="#86D780"
+            android:textColorHighlight="#007882"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btnYes"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/pretendard_semibold"
+            android:text="수정"
+            android:textColor="#86D780"
+            android:textColorHighlight="#007882"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
