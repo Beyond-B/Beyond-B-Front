@@ -4,33 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".sign_up.SignUpActivity"
+    tools:context=".membership.SignUpActivity"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:fontFamily="@font/pretendard_semibold"
-        android:text="경계 없는 미래를 위해"
-        android:textSize="20dp"
+    <ImageView
+        android:layout_width="246dp"
+        android:layout_height="42dp"
+        android:src="@drawable/tv_create_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="130dp"/>
 
-    <ImageView
-        android:id="@+id/signup_imageView"
-        android:layout_width="204dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="170dp"
-        android:src="@drawable/tv_beyondb"
+    <View
+        android:id="@+id/sign_up_line1"
+        android:layout_width="240dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="300dp"
+        android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/signup_line1"
+        android:id="@+id/sign_up_line2"
         android:layout_width="240dp"
         android:layout_height="0.5dp"
         android:layout_marginTop="360dp"
@@ -40,47 +37,74 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/signup_line2"
+        android:id="@+id/sign_up_line3"
         android:layout_width="240dp"
         android:layout_height="0.5dp"
+        android:layout_marginTop="420dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="430dp"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/sign_up_line4"
+        android:layout_width="240dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="480dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/signup_email"
+        android:id="@+id/sign_up_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
+        android:hint="username"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up_line1"
+        app:layout_constraintStart_toStartOf="@+id/sign_up_line1" />
+
+    <EditText
+        android:id="@+id/sign_up_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="age"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up_line2"
+        app:layout_constraintStart_toStartOf="@+id/sign_up_line2" />
+
+    <EditText
+        android:id="@+id/sign_up_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="email adrress"
         android:inputType="textEmailAddress"
-        android:hint="email adress"
-        app:layout_constraintBottom_toTopOf="@+id/signup_line1"
-        app:layout_constraintStart_toStartOf="@+id/signup_line1" />
+        app:layout_constraintBottom_toTopOf="@+id/sign_up_line3"
+        app:layout_constraintStart_toStartOf="@+id/sign_up_line3" />
 
     <EditText
-        android:id="@+id/signup_password"
+        android:id="@+id/sign_up_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:inputType="textPassword"
         android:hint="password"
-        app:layout_constraintBottom_toTopOf="@+id/signup_line2"
-        app:layout_constraintStart_toStartOf="@+id/signup_line2" />
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up_line4"
+        app:layout_constraintStart_toStartOf="@+id/sign_up_line4" />
 
     <RelativeLayout
-        android:id="@+id/signup_btn"
         android:layout_width="280dp"
         android:layout_height="50dp"
-        android:layout_marginTop="475dp"
+        android:layout_marginTop="530dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".sign_up.SignUpActivity">
+        tools:context=".membership.LogInActivity">
 
         <android.widget.Button
+            android:id="@+id/sign_up_signup_btn"
             android:layout_width="280dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_round_button"
@@ -93,18 +117,6 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/signup_new_account_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendard_regular"
-        android:text="Create New Account"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_btn"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_regular"
@@ -114,9 +126,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="30dp"/>
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
