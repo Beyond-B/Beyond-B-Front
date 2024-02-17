@@ -1,14 +1,22 @@
 package com.example.beyond_b.book.model;
 
 import com.example.beyond_b.R;
+import com.google.gson.annotations.SerializedName;
 
 public class Book {
+    @SerializedName("bookId")
     private int bookId;
+    @SerializedName("title")
     private String title;
+    @SerializedName("author")
     private String author;
+    @SerializedName("quiz1")
     private boolean quiz1;
+    @SerializedName("quiz2")
     private boolean quiz2;
+    @SerializedName("quiz3")
     private boolean quiz3;
+
     private int badgeResource;
 
     public int getBookId() {
@@ -69,7 +77,9 @@ public class Book {
             this.badgeResource = R.drawable.ic_badge3;
         else if (quiz2)
             this.badgeResource = R.drawable.ic_badge2;
-        else
+        else if (quiz1)
             this.badgeResource = R.drawable.ic_badge1;
+        else
+            this.badgeResource = R.drawable.ic_badge0;
     }
 }

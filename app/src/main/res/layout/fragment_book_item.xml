@@ -14,7 +14,7 @@
         android:fontFamily="@font/pretendard_light"
         android:paddingLeft="34dp"
         android:text="흥부와 놀부"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:fontFamily="@font/pretendard_extralight"
         android:paddingLeft="10dp"
         android:text="작가 미상"
-        android:textSize="10sp" />
+        android:textSize="9sp" />
 
     <ImageView
         android:id="@+id/icBadge"

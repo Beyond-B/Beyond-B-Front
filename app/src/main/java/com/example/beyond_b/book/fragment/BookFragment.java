@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class BookFragment extends Fragment {
 
@@ -53,6 +54,14 @@ public class BookFragment extends Fragment {
         setupRecyclerView();
 
         setupTabListener();
+        //처음에 fragment 띄울 시에도 api 호출 되게끔 수정.
+        if (bookBinding.tabEmotions.getTabCount() > 0) {
+            TabLayout.Tab defaultTab = bookBinding.tabEmotions.getTabAt(0);
+            if (defaultTab != null) {
+                String emotion = getEmotionForTab(defaultTab.getPosition());
+                fetchBooks(emotion);
+            }
+        }
 
         return view;
     }
@@ -84,13 +93,17 @@ public class BookFragment extends Fragment {
     }
 
     private void fetchBooks(String emotion) {
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODE5MjE4MywiZXhwIjoxNzA4MTk1NzgzfQ.U73TC1kXFumG51xBkJIyXVe3vHv0alsoS-Om8YfGbFw";
+        Retrofit retrofit = RetrofitClient.getClient(userToken);
+        ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.BookResponse> call = apiService.getBook(emotion);
         call.enqueue(new Callback<ApiResponse.BookResponse>() {
             @Override
             public void onResponse(Call<ApiResponse.BookResponse> call, Response<ApiResponse.BookResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+//                    List<Book> data = response.body();
                     bookListAdapter.updateBooks(response.body().getResult());
+                    System.out.println(response.body().getResult());
                 }
             }
 
