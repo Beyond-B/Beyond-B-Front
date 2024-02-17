@@ -7,7 +7,7 @@
     android:paddingBottom="14dp">
 
     <TextView
-        android:id="@+id/tx_title"
+        android:id="@+id/txTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -18,7 +18,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tx_author"
+        android:id="@+id/txAuthor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -28,7 +28,7 @@
         android:textSize="10sp" />
 
     <ImageView
-        android:id="@+id/ic_badge"
+        android:id="@+id/icBadge"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginRight="32dp"
