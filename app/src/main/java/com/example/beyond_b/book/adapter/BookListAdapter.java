@@ -1,6 +1,7 @@
 package com.example.beyond_b.book.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +14,16 @@ import java.util.List;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHolder> {
 
+    private OnItemClickListener onItemClickListener;
     private List<Book> bookList;
+
+    public interface OnItemClickListener {
+        void onItemClick(Book book);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     public BookListAdapter(List bookList){
         this.bookList = bookList;
@@ -35,7 +45,15 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Book item = bookList.get(position);
-        viewHolder.bind(item);
+       // viewHolder.bind(item);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(item);
+                }
+            }
+        });
     }
 
     @Override

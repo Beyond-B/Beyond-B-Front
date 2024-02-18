@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="82dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txDetailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="70dp"
+                android:fontFamily="@font/pretendard_medium"
+                android:text="흥부와 놀부"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txDetailAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="67dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/pretendard_thin"
+                android:text="작가미상"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txDetailTitle" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="90dp"
+                android:background="#9AA5B1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txDetailAuthor" />
+
+            <ImageView
+                android:id="@+id/imBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/ic_badge1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view" />
+
+            <ImageView
+                android:id="@+id/imBadge"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_badge1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txAboutT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="53dp"
+                android:fontFamily="@font/pretendard_light"
+                android:text="About"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imBook" />
+
+            <TextView
+                android:id="@+id/txAbout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="62dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="62dp"
+                android:fontFamily="@font/pretendard_thin"
+                android:text="옛날옛적에/.........................................................................................................."
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txAboutT" />
+
+            <TextView
+                android:id="@+id/txDateT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="recommended date"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@id/view4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txAbout" />
+
+            <TextView
+                android:id="@+id/txDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="sans-serif-thin"
+                android:text="2024.02.15"
+                app:layout_constraintBottom_toBottomOf="@id/view5"
+                app:layout_constraintEnd_toEndOf="@id/view4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txDateT" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="0.5dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txAbout" />
+
+            <TextView
+                android:id="@+id/txMoodT"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="mood"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/view4"
+                app:layout_constraintTop_toBottomOf="@id/txAbout" />
+
+            <ImageView
+                android:id="@+id/imMood"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="15dp"
+                android:src="@drawable/ic_happy"
+                app:layout_constraintBottom_toBottomOf="@id/view5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/view4"
+                app:layout_constraintTop_toBottomOf="@id/txMoodT" />
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view4" />
+
+            <TextView
+                android:id="@+id/txQuiz1T"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/pretendard_light"
+                android:text="first solved date"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/view4"
+                app:layout_constraintStart_toStartOf="@id/txQuiz2T"
+                app:layout_constraintTop_toTopOf="@id/view5" />
+
+            <ImageView
+                android:id="@+id/imBadge1"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/ic_badge1"
+                app:layout_constraintStart_toEndOf="@id/txQuiz1Date"
+                app:layout_constraintTop_toTopOf="@id/txQuiz1Date" />
+
+            <TextView
+                android:id="@+id/txQuiz1Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="@font/pretendard_thin"
+                android:text="2024.01.15"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/view4"
+                app:layout_constraintTop_toTopOf="@id/txQuiz1T" />
+
+            <TextView
+                android:id="@+id/txQuiz2T"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/pretendard_light"
+                android:layout_marginEnd="8dp"
+                android:text="second solved date"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/view4"
+                app:layout_constraintTop_toBottomOf="@id/txQuiz1T" />
+
+            <ImageView
+                android:id="@+id/imBadge2"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/ic_badge2"
+                app:layout_constraintStart_toEndOf="@id/txQuiz2Date"
+                app:layout_constraintTop_toTopOf="@id/txQuiz2Date" />
+
+            <TextView
+                android:id="@+id/txQuiz2Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/pretendard_thin"
+                android:text="not solved yet"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/view4"
+                app:layout_constraintTop_toTopOf="@id/txQuiz2T" />
+
+            <TextView
+                android:id="@+id/txQuiz3T"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/pretendard_light"
+                android:text="third solved date"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@id/view4"
+                app:layout_constraintStart_toStartOf="@id/txQuiz2T"
+                app:layout_constraintTop_toBottomOf="@id/txQuiz2T" />
+
+            <ImageView
+                android:id="@+id/imBadge3"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/ic_badge3"
+                app:layout_constraintStart_toEndOf="@id/txQuiz3Date"
+                app:layout_constraintTop_toTopOf="@id/txQuiz3Date" />
+
+            <TextView
+                android:id="@+id/txQuiz3Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="@font/pretendard_thin"
+                android:text="not solved yet"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@id/view4"
+                app:layout_constraintTop_toTopOf="@id/txQuiz3T" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGotoQuiz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/btn_custom"
+                android:fontFamily="@font/pretendard_extrabold"
+                android:text="Go to Quiz"
+                android:textColor="#ffffff"
+                android:textSize="18sp"
+                app:cornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txQuiz3Date" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</androidx.core.widget.NestedScrollView>

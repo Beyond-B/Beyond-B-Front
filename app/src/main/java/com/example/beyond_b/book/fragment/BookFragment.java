@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.beyond_b.R;
 import com.example.beyond_b.book.adapter.BookListAdapter;
 import com.example.beyond_b.book.model.ApiResponse;
 import com.example.beyond_b.databinding.FragmentBookBinding;
@@ -63,6 +64,7 @@ public class BookFragment extends Fragment {
             }
         }
 
+
         return view;
     }
 
@@ -70,6 +72,20 @@ public class BookFragment extends Fragment {
         bookListAdapter = new BookListAdapter(new ArrayList<>());
         bookBinding.rvBookList.setLayoutManager(new LinearLayoutManager(getContext()));
         bookBinding.rvBookList.setAdapter(bookListAdapter);
+
+        // 아이템 클릭시 bookDetailFragment 호출
+        bookListAdapter.setOnItemClickListener(book -> {
+            BookDetailFragment bookDetailFragment = new BookDetailFragment();
+
+            Bundle args = new Bundle();
+            args.putInt("bookId", book.getBookId());
+            bookDetailFragment.setArguments(args);
+
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, bookDetailFragment)
+               //     .addToBackStack(null) // Back stack에 추가
+                    .commit();
+        });
     }
 
     private void setupTabListener() {
@@ -93,7 +109,7 @@ public class BookFragment extends Fragment {
     }
 
     private void fetchBooks(String emotion) {
-        String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODE5MjE4MywiZXhwIjoxNzA4MTk1NzgzfQ.U73TC1kXFumG51xBkJIyXVe3vHv0alsoS-Om8YfGbFw";
+        String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODE5OTY5OCwiZXhwIjoxNzA4MjAzMjk4fQ.NPA3euXuvcPDdA2PgbVbonCISv9CnQiHgF8EZ0cDFUw";
         Retrofit retrofit = RetrofitClient.getClient(userToken);
         ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.BookResponse> call = apiService.getBook(emotion);
@@ -131,6 +147,8 @@ public class BookFragment extends Fragment {
                 return "HAPPY";
         }
     }
+
+
 
     @Override
     public void onDestroyView() {
