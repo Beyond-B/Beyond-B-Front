@@ -45,7 +45,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Book item = bookList.get(position);
-       // viewHolder.bind(item);
+        viewHolder.bind(item);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

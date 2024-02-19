@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -12,7 +13,6 @@ import com.example.beyond_b.R;
 import com.example.beyond_b.book.adapter.BookListAdapter;
 import com.example.beyond_b.book.model.ApiResponse;
 import com.example.beyond_b.databinding.FragmentBookBinding;
-import com.example.beyond_b.databinding.FragmentBookItemBinding;
 import com.example.beyond_b.network.ApiService;
 import com.example.beyond_b.network.RetrofitClient;
 import com.google.android.material.tabs.TabLayout;
@@ -28,7 +28,8 @@ public class BookFragment extends Fragment {
 
     private FragmentBookBinding bookBinding;
     private BookListAdapter bookListAdapter;
-    private FragmentBookItemBinding itemBinding;
+    private final String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODM0ODY2NywiZXhwIjoxNzA4MzUyMjY3fQ.-O-XJXyJw0mwIH4MGoiYsj3RtIenG4TBKjZeMa8Ck8g";
+
 
     public BookFragment() {
 
@@ -79,11 +80,12 @@ public class BookFragment extends Fragment {
 
             Bundle args = new Bundle();
             args.putInt("bookId", book.getBookId());
+            args.putString("userToken", userToken);
             bookDetailFragment.setArguments(args);
 
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, bookDetailFragment)
-               //     .addToBackStack(null) // Back stack에 추가
+                    .addToBackStack(null) // Back stack에 추가
                     .commit();
         });
     }
@@ -109,17 +111,18 @@ public class BookFragment extends Fragment {
     }
 
     private void fetchBooks(String emotion) {
-        String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODE5OTY5OCwiZXhwIjoxNzA4MjAzMjk4fQ.NPA3euXuvcPDdA2PgbVbonCISv9CnQiHgF8EZ0cDFUw";
+        System.out.println("here");
         Retrofit retrofit = RetrofitClient.getClient(userToken);
         ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.BookResponse> call = apiService.getBook(emotion);
+        System.out.println(emotion);
         call.enqueue(new Callback<ApiResponse.BookResponse>() {
             @Override
-            public void onResponse(Call<ApiResponse.BookResponse> call, Response<ApiResponse.BookResponse> response) {
+            public void onResponse(@NonNull Call<ApiResponse.BookResponse> call, Response<ApiResponse.BookResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
 //                    List<Book> data = response.body();
                     bookListAdapter.updateBooks(response.body().getResult());
-                    System.out.println(response.body().getResult());
+                    System.out.println("heree");
                 }
             }
 
@@ -154,7 +157,6 @@ public class BookFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         bookBinding = null;
-        itemBinding = null;
     }
 
 }

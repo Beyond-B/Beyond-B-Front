@@ -19,7 +19,11 @@ public class ApiResponse {
         private boolean isSuccess;
         private String code;
         private String message;
-        private List<BookDetailResult> result;
+        private BookDetailResult result;
+
+        public BookDetailResult getResult() {
+            return this.result;
+        }
     }
 
 }

@@ -9,12 +9,22 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="82dp">
+        android:paddingBottom="30dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="10dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_backspace"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txDetailTitle"
@@ -53,22 +63,12 @@
                 app:layout_constraintTop_toBottomOf="@id/txDetailAuthor" />
 
             <ImageView
-                android:id="@+id/imBook"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="25dp"
-                android:src="@drawable/ic_badge1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view" />
-
-            <ImageView
                 android:id="@+id/imBadge"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="100dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_badge1"
+                android:src="@drawable/ic_badge0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,7 +82,7 @@
                 android:text="About"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imBook" />
+                app:layout_constraintTop_toBottomOf="@id/card" />
 
             <TextView
                 android:id="@+id/txAbout"
@@ -92,6 +92,8 @@
                 android:layout_marginTop="14dp"
                 android:layout_marginEnd="62dp"
                 android:fontFamily="@font/pretendard_thin"
+                android:letterSpacing="0.1"
+                android:lineSpacingExtra="5sp"
                 android:text="옛날옛적에/.........................................................................................................."
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -126,6 +128,7 @@
                 android:layout_width="0.5dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="40dp"
+                android:background="#9AA5B1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txAbout" />
@@ -147,7 +150,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="11dp"
                 android:layout_marginBottom="15dp"
-                android:src="@drawable/ic_happy"
+                android:src="@drawable/ic_badge0"
                 app:layout_constraintBottom_toBottomOf="@id/view5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/view4"
@@ -183,7 +186,7 @@
                 android:layout_height="21dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="0dp"
-                android:src="@drawable/ic_badge1"
+                android:src="@drawable/ic_badge0"
                 app:layout_constraintStart_toEndOf="@id/txQuiz1Date"
                 app:layout_constraintTop_toTopOf="@id/txQuiz1Date" />
 
@@ -204,8 +207,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:fontFamily="@font/pretendard_light"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/pretendard_light"
                 android:text="second solved date"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@id/view4"
@@ -217,7 +220,7 @@
                 android:layout_height="21dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="0dp"
-                android:src="@drawable/ic_badge2"
+                android:src="@drawable/ic_badge0"
                 app:layout_constraintStart_toEndOf="@id/txQuiz2Date"
                 app:layout_constraintTop_toTopOf="@id/txQuiz2Date" />
 
@@ -251,7 +254,7 @@
                 android:layout_height="21dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="0dp"
-                android:src="@drawable/ic_badge3"
+                android:src="@drawable/ic_badge0"
                 app:layout_constraintStart_toEndOf="@id/txQuiz3Date"
                 app:layout_constraintTop_toTopOf="@id/txQuiz3Date" />
 
@@ -283,6 +286,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txQuiz3Date" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="25dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/view">
+
+                <ImageView
+                    android:id="@+id/imBook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/bg_white" />
+            </androidx.cardview.widget.CardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
