@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="13dp"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/txTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:fontFamily="@font/pretendard_light"
+        android:paddingLeft="30dp"
+        android:text="흥부와 놀부"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/pretendard_extralight"
+        android:paddingLeft="10dp"
+        android:text="작가 미상"
+        android:textSize="9sp" />
+
+    <ImageView
+        android:id="@+id/icBadge"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_weight="0"
+        android:src="@drawable/ic_badge1" />
+
+
+</LinearLayout>

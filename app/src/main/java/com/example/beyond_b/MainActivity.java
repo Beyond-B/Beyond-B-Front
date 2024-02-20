@@ -1,18 +1,14 @@
 package com.example.beyond_b;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.beyond_b.book.BookFragment;
+import com.example.beyond_b.book.fragment.BookFragment;
 import com.example.beyond_b.chat.ChatFragment;
 import com.example.beyond_b.diary.DiaryFragment;
 import com.example.beyond_b.my_page.MyPageFragment;
