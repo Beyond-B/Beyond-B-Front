@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.beyond_b.book.model.ApiResponse;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.databinding.FragmentBookDetailBinding;
@@ -95,7 +94,7 @@ public class BookDetailFragment extends Fragment {
         bookDetailBinding.txDetailTitle.setText(item.getBookContent().getTitle());
         bookDetailBinding.txDetailAuthor.setText(item.getBookContent().getAuthor());
         bookDetailBinding.imBadge.setImageResource(item.getBadgeResource());
-        Glide.with(this).load(item.getBookContent().getBookImage()).transform(new RoundedCorners(25)).into(bookDetailBinding.imBook);
+        Glide.with(this).load(item.getBookContent().getBookImage()).into(bookDetailBinding.imBook);
         bookDetailBinding.txAbout.setText(item.getBookContent().getBookSummary());
         bookDetailBinding.txDate.setText(item.getRecommendationDate());
         bookDetailBinding.imMood.setImageResource(item.getEmotion());

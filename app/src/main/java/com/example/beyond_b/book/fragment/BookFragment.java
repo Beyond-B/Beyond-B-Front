@@ -1,9 +1,13 @@
 package com.example.beyond_b.book.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,7 +32,7 @@ public class BookFragment extends Fragment {
 
     private FragmentBookBinding bookBinding;
     private BookListAdapter bookListAdapter;
-    private final String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODM0ODY2NywiZXhwIjoxNzA4MzUyMjY3fQ.-O-XJXyJw0mwIH4MGoiYsj3RtIenG4TBKjZeMa8Ck8g";
+    private final String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODQxMTYyNiwiZXhwIjoxNzA4NDE1MjI2fQ.k_FlFTFen2EnPtfsylm8_we9KrqlspxwBaI_K85kjs0";
 
 
     public BookFragment() {
@@ -53,6 +57,8 @@ public class BookFragment extends Fragment {
         bookBinding = FragmentBookBinding.inflate(inflater, container, false);
         View view = bookBinding.getRoot();
 
+        createTabLayout();
+
         setupRecyclerView();
 
         setupTabListener();
@@ -60,6 +66,14 @@ public class BookFragment extends Fragment {
         if (bookBinding.tabEmotions.getTabCount() > 0) {
             TabLayout.Tab defaultTab = bookBinding.tabEmotions.getTabAt(0);
             if (defaultTab != null) {
+                bookBinding.tabEmotions.selectTab(defaultTab);
+                //초기 탭 선택되어 색상 지정
+                View tabView = defaultTab.getCustomView();
+                if (tabView != null) {
+                    TextView tabText = tabView.findViewById(R.id.tabText);
+                    tabText.setTextColor(Color.parseColor("#86D780"));
+                }
+                //초기 탭 선택되어 api 호출.
                 String emotion = getEmotionForTab(defaultTab.getPosition());
                 fetchBooks(emotion);
             }
@@ -67,6 +81,24 @@ public class BookFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void createTabLayout() {
+        TabLayout tabLayout = bookBinding.tabEmotions;
+        String[] tabTitles = {"HAPPY", "DEPRESSED", "ANGRY", "SURPRISED", "SAD", "WORRIED"};
+        int[] tabIcons = {R.drawable.ic_happy, R.drawable.ic_depressed, R.drawable.ic_angry, R.drawable.ic_surprised, R.drawable.ic_sadness, R.drawable.ic_worried};
+        for (int i = 0; i < tabTitles.length; i++) {
+            TabLayout.Tab tab = tabLayout.newTab();
+            View tabView = LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
+            TextView tabText = tabView.findViewById(R.id.tabText);
+            ImageView tabIcon = tabView.findViewById(R.id.tabIcon);;
+
+            tabText.setText(tabTitles[i]); // 탭 제목 설정
+            tabIcon.setImageResource(tabIcons[i]); // 탭 아이콘 설정
+            tab.setCustomView(tabView);
+
+            tabLayout.addTab(tab);
+        }
     }
 
     private void setupRecyclerView() {
@@ -96,11 +128,21 @@ public class BookFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 String emotion = getEmotionForTab(tab.getPosition());
                 fetchBooks(emotion);
+                System.out.println(emotion);
+                View view = tab.getCustomView();
+                if (view != null) {
+                    TextView tabText = view.findViewById(R.id.tabText);
+                    tabText.setTextColor(Color.parseColor("#86D780"));
+                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                View view = tab.getCustomView();
+                if (view != null) {
+                    TextView tabText = view.findViewById(R.id.tabText);
+                    tabText.setTextColor(Color.parseColor("#919191"));
+                }
             }
 
             @Override
@@ -111,15 +153,15 @@ public class BookFragment extends Fragment {
     }
 
     private void fetchBooks(String emotion) {
-        System.out.println("here");
         Retrofit retrofit = RetrofitClient.getClient(userToken);
         ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.BookResponse> call = apiService.getBook(emotion);
-        System.out.println(emotion);
         call.enqueue(new Callback<ApiResponse.BookResponse>() {
             @Override
             public void onResponse(@NonNull Call<ApiResponse.BookResponse> call, Response<ApiResponse.BookResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
+                    System.out.println(emotion);
+                    System.out.println(response.body().getResult());
 //                    List<Book> data = response.body();
                     bookListAdapter.updateBooks(response.body().getResult());
                     System.out.println("heree");
@@ -128,10 +170,11 @@ public class BookFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ApiResponse.BookResponse> call, Throwable t) {
-                System.out.println("no");
+                Log.e("API Error", "Failed to fetch book details", t);
             }
         });
     }
+
     private String getEmotionForTab(int position) {
         switch (position) {
             case 0:
