@@ -99,7 +99,7 @@ public class MyPageFragment extends Fragment {
     }
 
     private void bind(MyPage item) {
-        myPageBinding.txAge.setText(item.getAge());
+        myPageBinding.txAge.setText(item.getAge() + "세");
         myPageBinding.txName.setText(item.getUsername());
     }
     //마이페이지 정보 가져오기 api 연결
