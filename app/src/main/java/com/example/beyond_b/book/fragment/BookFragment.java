@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.beyond_b.R;
 import com.example.beyond_b.book.adapter.BookListAdapter;
-import com.example.beyond_b.book.model.ApiResponse;
+import com.example.beyond_b.network.ApiResponse;
 import com.example.beyond_b.databinding.FragmentBookBinding;
+import com.example.beyond_b.membership.DatabaseHelper;
 import com.example.beyond_b.network.ApiService;
 import com.example.beyond_b.network.RetrofitClient;
 import com.google.android.material.tabs.TabLayout;
@@ -32,7 +33,7 @@ public class BookFragment extends Fragment {
 
     private FragmentBookBinding bookBinding;
     private BookListAdapter bookListAdapter;
-    private final String userToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MTQsImlhdCI6MTcwODQxMTYyNiwiZXhwIjoxNzA4NDE1MjI2fQ.k_FlFTFen2EnPtfsylm8_we9KrqlspxwBaI_K85kjs0";
+    private String accessToken = "";
 
 
     public BookFragment() {
@@ -54,6 +55,12 @@ public class BookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        DatabaseHelper db = new DatabaseHelper(getContext());
+
+        // 저장된 액세스 토큰 검색
+        accessToken = db.getAccessToken();
+        System.out.println("accessToken="+accessToken);
+
         bookBinding = FragmentBookBinding.inflate(inflater, container, false);
         View view = bookBinding.getRoot();
 
@@ -112,7 +119,7 @@ public class BookFragment extends Fragment {
 
             Bundle args = new Bundle();
             args.putInt("bookId", book.getBookId());
-            args.putString("userToken", userToken);
+            args.putString("accessToken", accessToken);
             bookDetailFragment.setArguments(args);
 
             getParentFragmentManager().beginTransaction()
@@ -153,7 +160,7 @@ public class BookFragment extends Fragment {
     }
 
     private void fetchBooks(String emotion) {
-        Retrofit retrofit = RetrofitClient.getClient(userToken);
+        Retrofit retrofit = RetrofitClient.getClient(accessToken);
         ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.BookResponse> call = apiService.getBook(emotion);
         call.enqueue(new Callback<ApiResponse.BookResponse>() {
