@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.beyond_b.book.model.ApiResponse;
+import com.example.beyond_b.network.ApiResponse;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.databinding.FragmentBookDetailBinding;
 import com.example.beyond_b.network.ApiService;
@@ -25,7 +25,7 @@ public class BookDetailFragment extends Fragment {
 
     private FragmentBookDetailBinding bookDetailBinding;
     private int bookId;
-    private static String userToken;
+    private static String accessToken;
 
     public BookDetailFragment() {
         // Required empty public constructor
@@ -35,7 +35,7 @@ public class BookDetailFragment extends Fragment {
         BookDetailFragment fragment = new BookDetailFragment();
         Bundle args = new Bundle();
         args.putInt("bookId", bookId);
-        args.putString("userToken", userToken);
+        args.putString("accessToken", accessToken);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,7 +53,7 @@ public class BookDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if (getArguments() != null) {
             bookId = getArguments().getInt("bookId");
-            userToken = getArguments().getString("userToken");
+            accessToken = getArguments().getString("accessToken");
             fetchBookDetail(bookId);
         }
 
@@ -62,7 +62,7 @@ public class BookDetailFragment extends Fragment {
     }
 
     private void fetchBookDetail(int bookId) {
-        Retrofit retrofit = RetrofitClient.getClient(userToken);
+        Retrofit retrofit = RetrofitClient.getClient(accessToken);
         ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.BookDetailResponse> call = apiService.getBookDetail(bookId);
         call.enqueue(new Callback<ApiResponse.BookDetailResponse>() {
