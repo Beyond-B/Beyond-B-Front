@@ -135,7 +135,6 @@ public class BookFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 String emotion = getEmotionForTab(tab.getPosition());
                 fetchBooks(emotion);
-                System.out.println(emotion);
                 View view = tab.getCustomView();
                 if (view != null) {
                     TextView tabText = view.findViewById(R.id.tabText);
@@ -167,11 +166,7 @@ public class BookFragment extends Fragment {
             @Override
             public void onResponse(@NonNull Call<ApiResponse.BookResponse> call, Response<ApiResponse.BookResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    System.out.println(emotion);
-                    System.out.println(response.body().getResult());
-//                    List<Book> data = response.body();
                     bookListAdapter.updateBooks(response.body().getResult());
-                    System.out.println("heree");
                 }
             }
 
@@ -200,8 +195,6 @@ public class BookFragment extends Fragment {
                 return "HAPPY";
         }
     }
-
-
 
     @Override
     public void onDestroyView() {

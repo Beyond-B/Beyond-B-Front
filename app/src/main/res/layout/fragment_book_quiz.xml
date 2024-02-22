@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/backstack"
-        android:layout_width="13dp"
-        android:layout_height="13dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_backspace"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="46dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="45dp"
         android:fontFamily="@font/pretendard_semibold"
         android:text="Q."
         android:textColor="#919191"
@@ -189,7 +189,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnNo4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_customquiz"
@@ -219,7 +219,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/btn_custom"
         android:fontFamily="@font/pretendard_extrabold"
         android:text="submit"
