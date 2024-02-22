@@ -22,6 +22,14 @@ public class BookQuiz {
     @SerializedName("step")
     private int step;
 
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
+
     public int getQuizId() {
         return quizId;
     }
@@ -32,10 +40,6 @@ public class BookQuiz {
 
     public int getBookId() {
         return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
     }
 
     public String getQuestion() {
@@ -88,9 +92,5 @@ public class BookQuiz {
 
     public int getStep() {
         return step;
-    }
-
-    public void setStep(int step) {
-        this.step = step;
     }
 }

@@ -33,7 +33,6 @@
             android:layout_marginTop="14dp"
             android:fontFamily="@font/pretendard_bold"
             android:gravity="center"
-            android:text="홍길동"
             android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +47,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:fontFamily="@font/pretendard_light"
-            android:text="17세"
             android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/view2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendard_extrabold"
                 android:paddingTop="13dp"
-                android:text="계정"
+                android:text="Account"
                 android:textColor="#86D780"
                 android:textSize="20sp" />
 
@@ -94,8 +92,14 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendard_regular"
                 android:paddingTop="10dp"
-                android:text="연령수정"
+                android:text="Edit Age"
                 android:textSize="15sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
         <View
@@ -127,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendard_extrabold"
                 android:paddingTop="15dp"
-                android:text="기타"
+                android:text="Others"
                 android:textColor="#86D780"
                 android:textSize="20sp" />
 
@@ -140,7 +144,7 @@
                 android:fontFamily="@font/pretendard_regular"
                 android:onClick="onLogoutClick"
                 android:paddingTop="10dp"
-                android:text="로그아웃"
+                android:text="Logout"
                 android:textSize="15sp" />
 
             <TextView
@@ -149,17 +153,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendard_regular"
                 android:paddingTop="10dp"
-                android:text="회원탈퇴"
+                android:text="Withdraw Membership"
                 android:textColor="#919191"
                 android:textSize="15sp" />
         </LinearLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

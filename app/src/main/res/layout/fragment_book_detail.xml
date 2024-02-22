@@ -19,9 +19,9 @@
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="17dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="25dp"
                 android:src="@drawable/ic_backspace"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

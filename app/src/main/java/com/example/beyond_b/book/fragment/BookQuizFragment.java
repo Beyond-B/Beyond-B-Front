@@ -2,14 +2,18 @@ package com.example.beyond_b.book.fragment;
 
 import android.animation.AnimatorInflater;
 import android.animation.StateListAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -77,6 +81,7 @@ public class BookQuizFragment extends Fragment {
         }
     }
 
+    private BookQuiz item = new BookQuiz();
     //quiz 데이터 가져오기 api
     private void fetchGetQuiz(int bookId) {
         Retrofit retrofit = RetrofitClient.getClient(accessToken);
@@ -87,7 +92,7 @@ public class BookQuizFragment extends Fragment {
             public void onResponse(@NonNull Call<ApiResponse.QuizResponse> call, Response<ApiResponse.QuizResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ApiResponse.QuizResponse ageResponse = response.body();
-                    BookQuiz item = response.body().getResult();
+                    item = response.body().getResult();
                     bind(item);
                 }
             }
@@ -106,16 +111,17 @@ public class BookQuizFragment extends Fragment {
         quizBinding.txNo3.setText(item.getOption3());
         quizBinding.txNo4.setText(item.getOption4());
 
-        quizBinding.btnNo1.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo1, quizBinding.btnNo1Circle); selectNum=1;});
-        quizBinding.btnNo2.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo2, quizBinding.btnNo2Circle); selectNum=2;});
-        quizBinding.btnNo3.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo3, quizBinding.btnNo3Circle); selectNum=3;});
-        quizBinding.btnNo4.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo4, quizBinding.btnNo4Circle); selectNum=4;});
+        quizBinding.btnNo1.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo1, quizBinding.btnNo1Circle, quizBinding.txNo1); selectNum=1;});
+        quizBinding.btnNo2.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo2, quizBinding.btnNo2Circle, quizBinding.txNo2); selectNum=2;});
+        quizBinding.btnNo3.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo3, quizBinding.btnNo3Circle, quizBinding.txNo3); selectNum=3;});
+        quizBinding.btnNo4.setOnClickListener(v -> {setButtonSelected(quizBinding.btnNo4, quizBinding.btnNo4Circle, quizBinding.txNo4); selectNum=4;});
 
         StateListAnimator stateListAnimator = AnimatorInflater.loadStateListAnimator(getContext(), R.drawable.btn_aniamte);
         quizBinding.btnNo1.setStateListAnimator(stateListAnimator);
         quizBinding.btnNo2.setStateListAnimator(stateListAnimator);
         quizBinding.btnNo3.setStateListAnimator(stateListAnimator);
         quizBinding.btnNo4.setStateListAnimator(stateListAnimator);
+
 
         quizBinding.backstack.setOnClickListener(v -> {
             checkToQuit();
@@ -135,19 +141,28 @@ public class BookQuizFragment extends Fragment {
         quizBinding.btnNo2Circle.setBackgroundResource(R.drawable.btn_customquizcircle);
         quizBinding.btnNo3Circle.setBackgroundResource(R.drawable.btn_customquizcircle);
         quizBinding.btnNo4Circle.setBackgroundResource(R.drawable.btn_customquizcircle);
+        quizBinding.txNo1.setTextColor(Color.parseColor("#919191"));
+        quizBinding.txNo1.setTypeface(ResourcesCompat.getFont(getContext(), R.font.pretendard_light));
+        quizBinding.txNo2.setTextColor(Color.parseColor("#919191"));
+        quizBinding.txNo2.setTypeface(ResourcesCompat.getFont(getContext(), R.font.pretendard_light));
+        quizBinding.txNo3.setTextColor(Color.parseColor("#919191"));
+        quizBinding.txNo3.setTypeface(ResourcesCompat.getFont(getContext(), R.font.pretendard_light));
+        quizBinding.txNo4.setTextColor(Color.parseColor("#919191"));
+        quizBinding.txNo4.setTypeface(ResourcesCompat.getFont(getContext(), R.font.pretendard_light));
     }
 
-    private void setButtonSelected(Button selectedButton, Button selectedCircleButton) {
+    private void setButtonSelected(Button selectedButton, Button selectedCircleButton, TextView selectedText) {
         resetButtons(); // 먼저 모든 버튼을 초기 상태로 설정
         selectedButton.setBackgroundResource(R.drawable.btn_customquizs);
-        selectedCircleButton.setBackgroundResource(R.drawable.btn_customquizcircle);
-        quizBinding.btnSubmitQuiz.setBackgroundResource(R.drawable.btn_custom); // 제출 버튼 스타일 변경
+        selectedCircleButton.setBackgroundResource(R.drawable.btn_customquizcircles);
+        quizBinding.btnSubmitQuiz.setBackgroundResource(R.drawable.btn_custom);
+        selectedText.setTextColor(Color.parseColor("#86D780"));
+        selectedText.setTypeface(ResourcesCompat.getFont(getContext(), R.font.pretendard_semibold));
 
     }
 
     private void checkToQuit(){
-        CustomDialogFragment dialog = CustomDialogFragment.newInstance("퀴즈를 그만 풀고 목록으로 돌아가시겠습니까?", "나가기");
-        dialog.setDialogQuizMessage();
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance("Would you like to stop taking the quiz and return to the list?", "out");
         dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
             @Override
             public boolean onPositiveButtonClick(DialogFragment dialog) {
@@ -161,35 +176,41 @@ public class BookQuizFragment extends Fragment {
                 dialog.dismiss();
             }
         });
+        dialog.show(getChildFragmentManager(), "backstackDialog");
     }
 
+    //퀴즈 정답인지 확인
     private void checkToSubmit(BookQuiz item) {
-        if(item.getAnswerOption()==(selectNum)) {
-            createDialog("correct");
+        if(selectNum==0){
+            Toast.makeText(getContext(),"You have to choose one option.", Toast.LENGTH_LONG).show();
+        }
+        else if(selectNum == item.getAnswerOption()) {
             fetchSubmitQuiz();
+            createDialog("correct");
         }
         else createDialog("incorrect");
 
     }
 
-    private CustomDialogFragmentQuiz createDialog(String str){
-        return CustomDialogFragmentQuiz.newInstance(str);
+    private void createDialog(String str){
+        CustomDialogFragmentQuiz dialog = CustomDialogFragmentQuiz.newInstance(str);
+        dialog.show(getChildFragmentManager(), "quizSubmitDialog");
     }
 
-    private BookQuizSubmit bookQuizSubmit = new BookQuizSubmit();
+    private final BookQuizSubmit submit = new BookQuizSubmit();
 
     //submit api
     private void fetchSubmitQuiz() {
         Retrofit retrofit = RetrofitClient.getClient(accessToken);
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<ApiResponse.QuizSubmitResponse> call = apiService.submitQuiz(bookQuizSubmit);
+        submit.setBookId(bookId);
+        submit.setStep(item.getStep());
+
+        Call<ApiResponse.QuizSubmitResponse> call = apiService.submitQuiz(submit);
         call.enqueue(new Callback<ApiResponse.QuizSubmitResponse>() {
             @Override
             public void onResponse(@NonNull Call<ApiResponse.QuizSubmitResponse> call, Response<ApiResponse.QuizSubmitResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    ApiResponse.QuizSubmitResponse quizSubmitResponse = response.body();
-                    System.out.println(quizSubmitResponse.getMessage());
-                }
+
             }
 
             @Override

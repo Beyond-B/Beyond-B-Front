@@ -93,10 +93,6 @@ public class CustomDialogFragment extends DialogFragment {
         return dialog;
     }
 
-    public void setDialogQuizMessage(){
-        binding.dialogMessage.setText("퀴즈를 그만 푸시겠습니까?");
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -110,10 +110,7 @@ public class BookDetailFragment extends Fragment {
         bookDetailBinding.txQuiz3Date.setText(item.setQuiz3Date());
         bookDetailBinding.imBadge3.setImageResource(item.setBadge(item.getQuiz3Date(), 3));
 
-
         String dateString= "";
-        System.out.println(bookDetailBinding.txQuiz1Date.getText().toString());
-        System.out.println(bookDetailBinding.txQuiz1Date.getText().toString().equals("Not solved yet"));
         if(!bookDetailBinding.txQuiz3Date.getText().toString().equals("Not solved yet")){
             dateString = bookDetailBinding.txQuiz3Date.getText().toString();
             getDate(dateString);
@@ -148,7 +145,7 @@ public class BookDetailFragment extends Fragment {
             System.out.println("diff="+diff);
             // 하루 이상 차이나는지 확인
             if (days < 1) {
-                bookDetailBinding.btnGotoQuiz.setText("See you 1 day later");
+                bookDetailBinding.btnGotoQuiz.setText("Try it again tommorow!");
                 bookDetailBinding.btnGotoQuiz.setBackgroundResource(R.drawable.btn_custom_gray);
                 bookDetailBinding.btnGotoQuiz.setClickable(false);
             }else goToQuizPage();
