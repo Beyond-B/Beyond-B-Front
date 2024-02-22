@@ -30,7 +30,7 @@ public class CustomDialogFragment extends DialogFragment {
     }
 
     public interface DialogListener {
-        void onPositiveButtonClick(DialogFragment dialog);
+        boolean onPositiveButtonClick(DialogFragment dialog);
         void onNegativeButtonClick(DialogFragment dialog);
     }
 
@@ -91,6 +91,10 @@ public class CustomDialogFragment extends DialogFragment {
         }
 
         return dialog;
+    }
+
+    public void setDialogQuizMessage(){
+        binding.dialogMessage.setText("퀴즈를 그만 푸시겠습니까?");
     }
 
     @Override

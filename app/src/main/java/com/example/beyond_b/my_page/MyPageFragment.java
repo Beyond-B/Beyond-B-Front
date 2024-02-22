@@ -105,7 +105,6 @@ public class MyPageFragment extends Fragment {
     //마이페이지 정보 가져오기 api 연결
     private void fetchMyPageData() {
         Retrofit retrofit = RetrofitClient.getClient(accessToken);
-        System.out.println(accessToken);
         ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.MyPageResponse> call = apiService.getMyPage();
         call.enqueue(new Callback<ApiResponse.MyPageResponse>() {
@@ -115,7 +114,6 @@ public class MyPageFragment extends Fragment {
                     ApiResponse.MyPageResponse ageResponse = response.body();
                     MyPage item = response.body().getResult();
                     bind(item);
-                    System.out.println("fetchMyPageData");
                 }
             }
 
@@ -171,12 +169,13 @@ public class MyPageFragment extends Fragment {
         CustomDialogFragment dialog = CustomDialogFragment.newInstance("정말 로그아웃 하시겠습니까?", "로그아웃");
         dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
             @Override
-            public void onPositiveButtonClick(DialogFragment dialog) {
+            public boolean onPositiveButtonClick(DialogFragment dialog) {
                 Intent intent = new Intent(getActivity(), LogInActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
                 getActivity().finish();
+                return false;
             }
 
             @Override
@@ -206,8 +205,9 @@ public class MyPageFragment extends Fragment {
         CustomDialogFragment dialog = CustomDialogFragment.newInstance("정말 회원탈퇴 하시겠습니까?", "회원탈퇴");
         dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
             @Override
-            public void onPositiveButtonClick(DialogFragment dialog) {
+            public boolean onPositiveButtonClick(DialogFragment dialog) {
                 // '네' 버튼 클릭 시 수행할 작업
+                return false;
             }
 
             @Override
