@@ -3,11 +3,13 @@ package com.example.beyond_b.diary;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beyond_b.R;
+import com.example.beyond_b.databinding.CalendarCellBinding;
 
 import java.util.ArrayList;
 
@@ -42,6 +44,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     }
 
     public interface onItemListener{
-        void onItemClick(int position, String dayText);
+        void onItemClick(int position, String dayText, ImageView moodImg);
     }
 }

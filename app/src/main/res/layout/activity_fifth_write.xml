@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <ImageButton
+        android:id="@+id/fifth_write_cancel"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/pretendard_light"
+        android:text="Q. How did you act when it happened?"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/diary_fifth_write_editText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:hint="Please enter your story"
+        android:fontFamily="@font/nanum_ggocnaeum"
+        android:background="@null"
+        android:gravity="center"
+        android:textSize="15dp"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="40dp">
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"/>
+
+        <android.widget.Button
+            android:id="@+id/diary_fifth_write_pre_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_round_stroke_button"
+            android:text="prev"
+            android:fontFamily="@font/pretendard_extrabold"
+            android:textSize="18dp"
+            android:textColor = "#86D780" />
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"/>
+
+        <android.widget.Button
+            android:id="@+id/diary_fifth_write_next_btn"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_round_button"
+            android:backgroundTint="#86D780"
+            android:fontFamily="@font/pretendard_extrabold"
+            android:text="next"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp" />
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

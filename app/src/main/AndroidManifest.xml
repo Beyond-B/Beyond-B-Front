@@ -13,6 +13,24 @@
         android:theme="@style/Theme.BeyondB"
         tools:targetApi="31">
         <activity
+            android:name=".diary.write.sixthWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".diary.write.fifthWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".diary.write.fourthWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".diary.write.thirdWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".diary.write.secondWriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".diary.write.firstWriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

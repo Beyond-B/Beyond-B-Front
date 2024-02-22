@@ -1,25 +1,29 @@
 package com.example.beyond_b.diary;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.beyond_b.R;
 import com.example.beyond_b.databinding.FragmentDiaryBinding;
+import com.example.beyond_b.diary.write.firstWriteActivity;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 
 
@@ -62,10 +66,27 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         binding= FragmentDiaryBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
+        //글쓰기 버튼 클릭시
         binding.diaryWriteFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                startActivity(new Intent(getActivity(), firstWriteActivity.class));
+            }
+        });
+
+        //달력 지난 달
+        binding.diaryCalendarPreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                previousMonthAction(rootView);
+            }
+        });
+
+        //달력 다음 달
+        binding.diaryCalendarNextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextMonthAction(rootView);
             }
         });
 
@@ -82,6 +103,7 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         yearText.setText(yearFromDate(selectedDate));
 
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
+
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(requireActivity(), 7);
         calenderRecyclerView.setLayoutManager(layoutManager);
@@ -110,13 +132,13 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String  monthFromDate(LocalDate date){
+    private String monthFromDate(LocalDate date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
         return date.format(formatter);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private String  yearFromDate(LocalDate date){
+    private String yearFromDate(LocalDate date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyy");
         return date.format(formatter);
     }
@@ -140,10 +162,19 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     }
 
 
+    //날짜 클릭시 이벤트
     @Override
-    public void onItemClick(int position, String dayText) {
-        if(dayText.equals("")){
-            //날짜 클릭시 클릭이벤트
+    public void onItemClick(int position, String dayText, ImageView moodImg) {
+        //감정일기 작성해서 감정이모지 보일 시 작성한 일기 보여줌
+        if(moodImg.getVisibility() == View.VISIBLE){
+            FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.fragment_container, CalendarCellClickFragment.newInstance(dayText, dayText))
+                    .addToBackStack(null)
+                    .commit();
+        }
+        else{
+
         }
     }
 }
