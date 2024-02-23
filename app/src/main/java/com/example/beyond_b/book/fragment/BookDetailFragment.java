@@ -10,11 +10,18 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.example.beyond_b.network.ApiResponse;
+import com.example.beyond_b.R;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.databinding.FragmentBookDetailBinding;
+import com.example.beyond_b.network.ApiResponse;
 import com.example.beyond_b.network.ApiService;
 import com.example.beyond_b.network.RetrofitClient;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,12 +91,9 @@ public class BookDetailFragment extends Fragment {
 
     public void bind(BookDetailResult item){
         ImageView backButton = bookDetailBinding.imageView6;
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requireActivity().getSupportFragmentManager().popBackStack();
-                onDestroyView();
-            }
+        backButton.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().popBackStack();
+            onDestroyView();
         });
         bookDetailBinding.txDetailTitle.setText(item.getBookContent().getTitle());
         bookDetailBinding.txDetailAuthor.setText(item.getBookContent().getAuthor());
@@ -106,9 +110,65 @@ public class BookDetailFragment extends Fragment {
         bookDetailBinding.txQuiz3Date.setText(item.setQuiz3Date());
         bookDetailBinding.imBadge3.setImageResource(item.setBadge(item.getQuiz3Date(), 3));
 
-
-
+        String dateString= "";
+        if(!bookDetailBinding.txQuiz3Date.getText().toString().equals("Not solved yet")){
+            dateString = bookDetailBinding.txQuiz3Date.getText().toString();
+            getDate(dateString);
+        }else if(!bookDetailBinding.txQuiz2Date.getText().toString().equals("Not solved yet")){
+            dateString = bookDetailBinding.txQuiz2Date.getText().toString();
+            getDate(dateString);
+        }else if(!bookDetailBinding.txQuiz1Date.getText().toString().equals("Not solved yet")) {
+            dateString = bookDetailBinding.txQuiz1Date.getText().toString();
+            getDate(dateString);
+        }else{
+            goToQuizPage();
+        }
     }
+
+    private void getDate(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date quizDate = null;
+        try {
+            quizDate = sdf.parse(dateString); // 문자열을 Date 객체로 파싱
+            System.out.println("파싱햇옹");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("quizDate"+quizDate);
+        if (quizDate != null) {
+            // 현재 날짜 가져오기
+            Date currentDate = new Date();
+
+            // 두 날짜의 차이 계산
+            long diff = currentDate.getTime() - quizDate.getTime(); // 밀리초 단위 차이
+            long days = TimeUnit.MILLISECONDS.toDays(diff); // 밀리초를 일 단위로 변환
+            System.out.println("diff="+diff);
+            // 하루 이상 차이나는지 확인
+            if (days < 1) {
+                bookDetailBinding.btnGotoQuiz.setText("Try it again tommorow!");
+                bookDetailBinding.btnGotoQuiz.setBackgroundResource(R.drawable.btn_custom_gray);
+                bookDetailBinding.btnGotoQuiz.setClickable(false);
+            }else goToQuizPage();
+        }
+    }
+
+    private void goToQuizPage() {
+        bookDetailBinding.btnGotoQuiz.setOnClickListener(v -> {
+            BookQuizFragment bookQuizFragment = new BookQuizFragment();
+
+            Bundle args = new Bundle();
+            args.putInt("bookId", bookId);
+            args.putString("accessToken", accessToken);
+            bookQuizFragment.setArguments(args);
+
+            //백스택 추가
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, bookQuizFragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

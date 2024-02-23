@@ -30,7 +30,7 @@ public class CustomDialogFragment extends DialogFragment {
     }
 
     public interface DialogListener {
-        void onPositiveButtonClick(DialogFragment dialog);
+        boolean onPositiveButtonClick(DialogFragment dialog);
         void onNegativeButtonClick(DialogFragment dialog);
     }
 

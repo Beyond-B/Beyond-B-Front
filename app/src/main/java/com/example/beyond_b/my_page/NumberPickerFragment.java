@@ -52,7 +52,7 @@ public class NumberPickerFragment extends DialogFragment {
         builder.setView(view);
 
         NumberPicker numberPicker = binding.numberPicker;
-        numberPicker.setMinValue(7);
+        numberPicker.setMinValue(5);
         numberPicker.setMaxValue(19);
         int currentValue = getArguments().getInt(ARG_CURRENT_VALUE, 0);
         numberPicker.setValue(currentValue);

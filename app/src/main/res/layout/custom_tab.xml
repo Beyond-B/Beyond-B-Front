@@ -20,9 +20,9 @@
         android:layout_width="32dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="ANGRY"
+        android:text="DEPRESSED"
         android:textAlignment="center"
-        android:textSize="5sp"
+        android:textSize="5.6sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabIcon" />

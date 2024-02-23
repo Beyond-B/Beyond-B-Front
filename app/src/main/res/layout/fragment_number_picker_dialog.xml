@@ -10,13 +10,13 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendard_medium"
+        android:fontFamily="@font/pretendard_semibold"
         android:paddingLeft="30dp"
         android:paddingTop="15dp"
         android:paddingBottom="10dp"
-        android:text="연령수정"
+        android:text="Edit Age"
         android:textAlignment="textStart"
-        android:textSize="17sp" />
+        android:textSize="18sp" />
 
     <NumberPicker
         android:id="@+id/numberPicker"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/pretendard_semibold"
-            android:text="닫기"
+            android:text="Close"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
             android:textSize="15sp" />
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/pretendard_semibold"
-            android:text="수정"
+            android:text="Confirm"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
             android:textSize="15sp" />

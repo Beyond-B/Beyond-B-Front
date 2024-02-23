@@ -99,13 +99,12 @@ public class MyPageFragment extends Fragment {
     }
 
     private void bind(MyPage item) {
-        myPageBinding.txAge.setText(item.getAge());
+        myPageBinding.txAge.setText("Age : " + item.getAge());
         myPageBinding.txName.setText(item.getUsername());
     }
     //마이페이지 정보 가져오기 api 연결
     private void fetchMyPageData() {
         Retrofit retrofit = RetrofitClient.getClient(accessToken);
-        System.out.println(accessToken);
         ApiService apiService = retrofit.create(ApiService.class);
         Call<ApiResponse.MyPageResponse> call = apiService.getMyPage();
         call.enqueue(new Callback<ApiResponse.MyPageResponse>() {
@@ -115,7 +114,6 @@ public class MyPageFragment extends Fragment {
                     ApiResponse.MyPageResponse ageResponse = response.body();
                     MyPage item = response.body().getResult();
                     bind(item);
-                    System.out.println("fetchMyPageData");
                 }
             }
 
@@ -137,7 +135,7 @@ public class MyPageFragment extends Fragment {
                 fetchAge(age);
                 System.out.println(age);
                 if(!age.equals("0")) {
-                    myPageBinding.txAge.setText(selectedNumber + "세");
+                    myPageBinding.txAge.setText("Age : "+selectedNumber);
                 }
             }
         });
@@ -168,15 +166,16 @@ public class MyPageFragment extends Fragment {
 
     //로그아웃 처리 코드
     private void logoutDialog() {
-        CustomDialogFragment dialog = CustomDialogFragment.newInstance("정말 로그아웃 하시겠습니까?", "로그아웃");
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance("Are you sure to logout?", "logout");
         dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
             @Override
-            public void onPositiveButtonClick(DialogFragment dialog) {
+            public boolean onPositiveButtonClick(DialogFragment dialog) {
                 Intent intent = new Intent(getActivity(), LogInActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
                 getActivity().finish();
+                return false;
             }
 
             @Override
@@ -186,28 +185,18 @@ public class MyPageFragment extends Fragment {
             }
         });
         dialog.show(getChildFragmentManager(), "logoutDialog");
-        /*
-        Dialog dialog = CustomDialogFragment.newInstance()
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-        builder.setTitle("로그아웃")
-                .setMessage("정말 로그아웃 하시겠습니까?")
-                .setPositiveButton("로그아웃하기", setLogout(v.getRootView()) )
-                .setNegativeButton("잘못 눌렀어요", null);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        */
     }
 
 
     // 회원탈퇴 처리 코드
     private void withdrawal() {
 
-        CustomDialogFragment dialog = CustomDialogFragment.newInstance("정말 회원탈퇴 하시겠습니까?", "회원탈퇴");
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance("Are you sure to withdraw membership?", "withdraw");
         dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
             @Override
-            public void onPositiveButtonClick(DialogFragment dialog) {
+            public boolean onPositiveButtonClick(DialogFragment dialog) {
                 // '네' 버튼 클릭 시 수행할 작업
+                return false;
             }
 
             @Override
@@ -217,30 +206,7 @@ public class MyPageFragment extends Fragment {
             }
         });
         dialog.show(getChildFragmentManager(), "withdrawalDialog");
-
-//        AlertDialog.Builder builder = new AlertDialog.Builder(rootView.getContext());
-//        builder.setTitle("회원탈퇴")
-//                .setMessage("정말 회원탈퇴 하시겠습니까?")
-//                .setPositiveButton("진짜 회원탈퇴하기", setWithdrawal(rootView.getRootView()) )
-//                .setNegativeButton("안 할래요", null);
-//
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
     }
-
-
-    // 회원탈퇴 시 메인화면
-    private DialogInterface.OnClickListener setWithdrawal(View rootView) {
-
-        return null;
-    }
-
-    // 로그아웃 시 메인화면
-    public DialogInterface.OnClickListener setLogout(View view){
-        return null;
-    }
-
-
 
     @Override
     public void onDestroyView() {

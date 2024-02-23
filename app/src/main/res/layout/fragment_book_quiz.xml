@@ -1,7 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/backstack"
+        android:layout_width="15dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/ic_backspace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txQ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/pretendard_semibold"
+        android:text="Q."
+        android:textColor="#919191"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txQuizTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="45dp"
+        android:fontFamily="@font/pretendard_light"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNo1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txQ"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo1Circle"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/btn_customquizcircle"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo1"
+        app:layout_constraintEnd_toEndOf="@+id/btnNo1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnNo1"
+        app:layout_constraintTop_toTopOf="@+id/btnNo1"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/btn_customquiz"
+        app:layout_constraintBottom_toBottomOf="@+id/txNo1"
+        app:layout_constraintEnd_toEndOf="@+id/txQuizTitle"
+        app:layout_constraintStart_toStartOf="@+id/txQuizTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txQuizTitle" />
+
+    <TextView
+        android:id="@+id/txNo1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/pretendard_light"
+        android:textAlignment="viewStart"
+        android:textColor="#919191"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo1"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo1Circle"
+        app:layout_constraintStart_toStartOf="@+id/btnNo1"
+        app:layout_constraintTop_toTopOf="@+id/btnNo1" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo2Circle"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/btn_customquizcircle"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo2"
+        app:layout_constraintEnd_toEndOf="@+id/btnNo2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnNo2"
+        app:layout_constraintTop_toTopOf="@+id/btnNo2"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_customquiz"
+        app:layout_constraintBottom_toBottomOf="@+id/txNo2"
+        app:layout_constraintEnd_toEndOf="@+id/btnNo1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnNo1"
+        app:layout_constraintTop_toBottomOf="@+id/btnNo1" />
+
+    <TextView
+        android:id="@+id/txNo2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="-10dp"
+        android:fontFamily="@font/pretendard_light"
+        android:textAlignment="viewStart"
+        android:textColor="#919191"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo2"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo2Circle"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnNo1"
+        app:layout_constraintTop_toTopOf="@+id/btnNo2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo3Circle"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/btn_customquizcircle"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo3"
+        app:layout_constraintEnd_toEndOf="@+id/btnNo3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnNo3"
+        app:layout_constraintTop_toTopOf="@+id/btnNo3"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_customquiz"
+        app:layout_constraintBottom_toBottomOf="@+id/txNo3"
+        app:layout_constraintEnd_toEndOf="@+id/btnNo2"
+        app:layout_constraintStart_toStartOf="@+id/btnNo2"
+        app:layout_constraintTop_toBottomOf="@+id/btnNo2" />
+
+    <TextView
+        android:id="@+id/txNo3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="-10dp"
+        android:fontFamily="@font/pretendard_light"
+        android:textAlignment="viewStart"
+        android:textColor="#919191"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo3"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo3Circle"
+        app:layout_constraintStart_toStartOf="@+id/btnNo3"
+        app:layout_constraintTop_toTopOf="@+id/btnNo3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo4Circle"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/btn_customquizcircle"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo4"
+        app:layout_constraintEnd_toEndOf="@+id/btnNo4"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnNo4"
+        app:layout_constraintTop_toTopOf="@+id/btnNo4"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnNo4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_customquiz"
+        app:layout_constraintBottom_toBottomOf="@+id/txNo4"
+        app:layout_constraintEnd_toEndOf="@+id/btnNo3"
+        app:layout_constraintStart_toStartOf="@+id/btnNo3"
+        app:layout_constraintTop_toBottomOf="@+id/btnNo3" />
+
+    <TextView
+        android:id="@+id/txNo4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="-10dp"
+        android:fontFamily="@font/pretendard_light"
+        android:textAlignment="viewStart"
+        android:textColor="#919191"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnNo4"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo4Circle"
+        app:layout_constraintStart_toStartOf="@+id/btnNo4"
+        app:layout_constraintTop_toTopOf="@+id/btnNo4" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmitQuiz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_custom_gray"
+        android:fontFamily="@font/pretendard_extrabold"
+        android:text="submit"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txNo4"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

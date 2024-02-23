@@ -2,6 +2,7 @@ package com.example.beyond_b;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment, null)
                 .setReorderingAllowed(true)
                 .commit();
+    }
+
+    public void showBottomNavigation(boolean show) {
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation); // 여기서 bottom_navigation은 BottomNavigationView의 ID입니다.
+        bottomNav.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }
 
