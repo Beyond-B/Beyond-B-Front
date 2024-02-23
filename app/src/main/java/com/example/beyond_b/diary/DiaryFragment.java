@@ -166,7 +166,7 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     @Override
     public void onItemClick(int position, String dayText, ImageView moodImg) {
         //감정일기 작성해서 감정이모지 보일 시 작성한 일기 보여줌
-        if(moodImg.getVisibility() == View.VISIBLE){
+        if(!dayText.equals("") && moodImg.getVisibility() == View.VISIBLE){
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.fragment_container, CalendarCellClickFragment.newInstance(dayText, dayText))
