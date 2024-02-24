@@ -64,7 +64,6 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private FragmentBookItemBinding itemBinding;
-        private FragmentBookBinding bookBinding;
 
         public ViewHolder(FragmentBookItemBinding itemBinding ) {
             super(itemBinding.getRoot());
