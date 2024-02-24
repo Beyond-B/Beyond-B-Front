@@ -39,16 +39,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (itemId == R.id.page_2) {
-                    transferTo(ChatFragment.newInstance("param1", "param2"));
-                    return true;
-                }
-
-                if (itemId == R.id.page_3) {
                     transferTo(BookFragment.newInstance("param1", "param2"));
                     return true;
                 }
 
-                if (itemId == R.id.page_4) {
+                if (itemId == R.id.page_3) {
                     transferTo(MyPageFragment.newInstance("param1", "param2"));
                     return true;
                 }
