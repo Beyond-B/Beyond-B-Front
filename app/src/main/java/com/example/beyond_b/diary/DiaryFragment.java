@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +22,19 @@ import android.widget.TextView;
 import com.example.beyond_b.R;
 import com.example.beyond_b.databinding.FragmentDiaryBinding;
 import com.example.beyond_b.diary.write.firstWriteActivity;
+import com.example.beyond_b.network.ApiResponse;
+import com.example.beyond_b.network.ApiService;
+import com.example.beyond_b.network.RetrofitClient;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 public class DiaryFragment extends Fragment implements CalendarAdapter.onItemListener{
@@ -176,5 +186,25 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         else{
 
         }
+    }
+
+    //책 추천 api
+    private void fetchRecommendBook(String emotion) {
+        Retrofit retrofit = RetrofitClient.getClient(accessToken);
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ApiResponse.BookResponse> call = apiService.getBook(emotion);
+        call.enqueue(new Callback<ApiResponse.BookResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ApiResponse.BookResponse> call, Response<ApiResponse.BookResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    bookListAdapter.updateBooks(response.body().getResult());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse.BookResponse> call, Throwable t) {
+                Log.e("API Error", "Failed to fetch book details", t);
+            }
+        });
     }
 }

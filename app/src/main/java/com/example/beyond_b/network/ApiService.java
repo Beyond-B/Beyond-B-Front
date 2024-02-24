@@ -14,18 +14,36 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
+    // Book API
     @GET("api/book")
     Call<ApiResponse.BookResponse> getBook(@Query("emotion") String emotion);
     @GET("api/book/{bookId}/detail")
     Call<ApiResponse.BookDetailResponse> getBookDetail(@Path("bookId") int bookId);
-    @PATCH("age")
-    Call<ApiResponse.MyPageResponse> updateAge(@Body MyPage ageRequest);
-    @GET("mypage")
-    Call<ApiResponse.MyPageResponse> getMyPage();
+
+    // Quiz API
     @GET("api/quiz/{bookId}")
     Call<ApiResponse.QuizResponse> getQuiz(@Path("bookId") int bookId);
     @POST("api/quiz/submit")
     Call<ApiResponse.QuizSubmitResponse> submitQuiz(@Body BookQuizSubmit submit);
+
+    // Diary API
+    @PATCH("api/diary")
+    Call<ApiResponse.DiaryEditResponse> editDiary();
+    @GET("api/diary/{diaryId}/detail")
+    Call<ApiResponse.Diary>
+    @POST("api/diary/create")
+    Call<ApiResponse.>
+    @GET("api/diary/monthly")
+    Call<ApiResponse.>
+    //bookRecommend
+    @GET("api/book/recommend")
+    Call<ApiResponse.BookRecommend> recommendBook(@Query("emotion") String emotion);
+
+    // Profile API
+    @PATCH("age")
+    Call<ApiResponse.MyPageResponse> updateAge(@Body MyPage ageRequest);
+    @GET("mypage")
+    Call<ApiResponse.MyPageResponse> getMyPage();
     @DELETE("user")
     Call<ApiResponse.DeleteAccountResponse> deleteAccount();
 }
