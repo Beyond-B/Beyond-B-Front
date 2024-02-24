@@ -43,11 +43,11 @@ public class CustomDialogFragmentQuiz extends DialogFragment {
         // 내용 설정
         if(ARG_ISCORRECT.equals("correct")){
             dialogCustomQuizBinding.dialogMessage.setText("Congratulations!");
-            dialogCustomQuizBinding.tx1.setText("That's Correct Answer");
+            dialogCustomQuizBinding.tx1.setText("That's correct!");
             dialogCustomQuizBinding.tx2.setText("Try it again tomorrow!");
             dialogCustomQuizBinding.imageView2.setImageResource(R.drawable.ic_correct);
         }else{
-            dialogCustomQuizBinding.dialogMessage.setText("That's not a Correct Answer");
+            dialogCustomQuizBinding.dialogMessage.setText("That's Wrong!");
             dialogCustomQuizBinding.tx1.setText("Try it again!");
             dialogCustomQuizBinding.imageView2.setImageResource(R.drawable.ic_incorrect);
         }

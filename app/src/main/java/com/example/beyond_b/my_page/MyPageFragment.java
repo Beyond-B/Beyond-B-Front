@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -133,7 +134,6 @@ public class MyPageFragment extends Fragment {
                 selectedNumber = value;
                 String age = Integer.toString(selectedNumber);
                 fetchAge(age);
-                System.out.println(age);
                 if(!age.equals("0")) {
                     myPageBinding.txAge.setText("Age : "+selectedNumber);
                 }
@@ -191,11 +191,16 @@ public class MyPageFragment extends Fragment {
     // 회원탈퇴 처리 코드
     private void withdrawal() {
 
-        CustomDialogFragment dialog = CustomDialogFragment.newInstance("Are you sure to withdraw membership?", "withdraw");
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance("Are you sure to delete Account?", "Delete Account");
         dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
             @Override
             public boolean onPositiveButtonClick(DialogFragment dialog) {
-                // '네' 버튼 클릭 시 수행할 작업
+                fetchDeleteAccount();
+                Intent intent = new Intent(getActivity(), LogInActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+                getActivity().finish();
                 return false;
             }
 
@@ -206,6 +211,26 @@ public class MyPageFragment extends Fragment {
             }
         });
         dialog.show(getChildFragmentManager(), "withdrawalDialog");
+    }
+    private void fetchDeleteAccount() {
+        Retrofit retrofit = RetrofitClient.getClient(accessToken);
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ApiResponse.DeleteAccountResponse> call = apiService.deleteAccount();
+        call.enqueue(new Callback<ApiResponse.DeleteAccountResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<ApiResponse.DeleteAccountResponse> call, @NonNull Response<ApiResponse.DeleteAccountResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(getContext(),"회원탈퇴 성공", Toast.LENGTH_LONG).show();
+                    ApiResponse.DeleteAccountResponse deleteResponse = response.body();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse.DeleteAccountResponse> call, Throwable t) {
+                Log.e("API Error", "Failed to fetch delete account", t);
+            }
+        });
     }
 
     @Override

@@ -62,4 +62,11 @@ public class ApiResponse {
             return this.message;
         }
     }
+
+    public class DeleteAccountResponse {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        private String result;
+    }
 }
