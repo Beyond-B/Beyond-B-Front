@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_medium"
+        android:lineSpacingExtra="10dp"
         android:text="Hello👋&#10;It's a pleasure to meet you!"
         android:textAlignment="center"
         android:textSize="25sp"
