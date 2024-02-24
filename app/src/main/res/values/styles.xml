@@ -5,4 +5,19 @@
         <item name="android:textSize">10dp</item>
     </style>
 
+    <style name="tab" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">10dp</item>
+        <item name="android:color">#919191</item>
+    </style>
+
+    <style name="tab2" parent="TextAppearance.Design.Tab">
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">1dp</item>
+        <item name="android:color">#919191</item>
+    </style>
+    
+    <style name="btnCustom" parent="Widget.AppCompat.Button">
+        <item name="android:background">#86D780</item>
+    </style>
 </resources>
