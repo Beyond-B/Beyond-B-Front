@@ -60,11 +60,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/diary_surprized"
+        android:id="@+id/diary_surprised"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/ic_surprized"
+        android:src="@drawable/ic_surprised"
         app:layout_constraintEnd_toStartOf="@+id/diary_sadness"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diary_angry" />

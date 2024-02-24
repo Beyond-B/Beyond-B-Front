@@ -79,6 +79,8 @@ public class BookDetailFragment extends Fragment {
                     ApiResponse.BookDetailResponse data = response.body();
                     BookDetailResult item = response.body().getResult();
                     bind(item);
+                    System.out.println(item.getBookContent().getBookSummary());
+
                 }
             }
 
@@ -102,7 +104,6 @@ public class BookDetailFragment extends Fragment {
         bookDetailBinding.txAbout.setText(item.getBookContent().getBookSummary());
         bookDetailBinding.txDate.setText(item.getRecommendationDate());
         bookDetailBinding.imMood.setImageResource(item.getEmotion());
-
         bookDetailBinding.txQuiz1Date.setText(item.setQuiz1Date());
         bookDetailBinding.imBadge1.setImageResource(item.setBadge(item.getQuiz1Date(), 1));
         bookDetailBinding.txQuiz2Date.setText(item.setQuiz2Date());
@@ -130,11 +131,9 @@ public class BookDetailFragment extends Fragment {
         Date quizDate = null;
         try {
             quizDate = sdf.parse(dateString); // 문자열을 Date 객체로 파싱
-            System.out.println("파싱햇옹");
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println("quizDate"+quizDate);
         if (quizDate != null) {
             // 현재 날짜 가져오기
             Date currentDate = new Date();
@@ -142,10 +141,9 @@ public class BookDetailFragment extends Fragment {
             // 두 날짜의 차이 계산
             long diff = currentDate.getTime() - quizDate.getTime(); // 밀리초 단위 차이
             long days = TimeUnit.MILLISECONDS.toDays(diff); // 밀리초를 일 단위로 변환
-            System.out.println("diff="+diff);
             // 하루 이상 차이나는지 확인
             if (days < 1) {
-                bookDetailBinding.btnGotoQuiz.setText("Try it again tommorow!");
+                bookDetailBinding.btnGotoQuiz.setText("Try it again tomorrow!");
                 bookDetailBinding.btnGotoQuiz.setBackgroundResource(R.drawable.btn_custom_gray);
                 bookDetailBinding.btnGotoQuiz.setClickable(false);
             }else goToQuizPage();

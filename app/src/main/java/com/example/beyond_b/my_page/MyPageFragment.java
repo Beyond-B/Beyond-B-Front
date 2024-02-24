@@ -191,7 +191,7 @@ public class MyPageFragment extends Fragment {
     // 회원탈퇴 처리 코드
     private void withdrawal() {
 
-        CustomDialogFragment dialog = CustomDialogFragment.newInstance("Are you sure to withdraw membership?", "withdraw");
+        CustomDialogFragment dialog = CustomDialogFragment.newInstance("Are you sure to delete Account?", "Delete Account");
         dialog.setDialogListener(new CustomDialogFragment.DialogListener() {
             @Override
             public boolean onPositiveButtonClick(DialogFragment dialog) {
