@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -24,7 +22,7 @@ public class firstWriteActivity extends AppCompatActivity {
         ImageView happy = findViewById(R.id.diary_happy);
         ImageView depressed = findViewById(R.id.diary_depressed);
         ImageView angry = findViewById(R.id.diary_angry);
-        ImageView surprized = findViewById(R.id.diary_surprized);
+        ImageView surprized = findViewById(R.id.diary_surprised);
         ImageView sadness = findViewById(R.id.diary_sadness);
         ImageView worried = findViewById(R.id.diary_worried);
 

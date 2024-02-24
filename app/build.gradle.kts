@@ -44,7 +44,8 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
-    implementation("com.android.volley:volley:1.2.1")
+    implementation ("com.android.volley:volley:1.2.1")
+    implementation ("com.ramotion.paperonboarding:paper-onboarding:1.1.3")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
