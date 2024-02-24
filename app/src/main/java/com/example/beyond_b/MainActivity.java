@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.beyond_b.book.fragment.BookFragment;
-import com.example.beyond_b.chat.ChatFragment;
 import com.example.beyond_b.diary.DiaryFragment;
 import com.example.beyond_b.my_page.MyPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,16 +38,11 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (itemId == R.id.page_2) {
-                    transferTo(ChatFragment.newInstance("param1", "param2"));
-                    return true;
-                }
-
-                if (itemId == R.id.page_3) {
                     transferTo(BookFragment.newInstance("param1", "param2"));
                     return true;
                 }
 
-                if (itemId == R.id.page_4) {
+                if (itemId == R.id.page_3) {
                     transferTo(MyPageFragment.newInstance("param1", "param2"));
                     return true;
                 }

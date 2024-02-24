@@ -4,23 +4,17 @@
         android:id="@+id/page_1"
         android:enabled="true"
         android:icon="@drawable/selector_nav_diary"
-        android:title="일기" />
+        android:title="diary" />
 
     <item
         android:id="@+id/page_2"
         android:enabled="true"
-        android:icon="@drawable/seletor_nav_chat"
-        android:title="대화" />
+        android:icon="@drawable/seletor_nav_book"
+        android:title="book" />
 
     <item
         android:id="@+id/page_3"
         android:enabled="true"
-        android:icon="@drawable/seletor_nav_book"
-        android:title="독서" />
-
-    <item
-        android:id="@+id/page_4"
-        android:enabled="true"
         android:icon="@drawable/seletor_nav_mypage"
-        android:title="마이페이지" />
+        android:title="mypage" />
 </menu>
