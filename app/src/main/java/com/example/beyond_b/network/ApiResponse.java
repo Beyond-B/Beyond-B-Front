@@ -8,6 +8,7 @@ import com.example.beyond_b.book.model.DiarySummaries;
 import com.example.beyond_b.my_page.MyPage;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApiResponse {
@@ -84,8 +85,7 @@ public class ApiResponse {
         private String result;
     }
 
-<<<<<<< HEAD
-    public  class DiaryCreateResponse{
+    public  class DiaryCreateResponse {
         private String date;
         private String emotion;
         private String event;
@@ -93,16 +93,17 @@ public class ApiResponse {
         private String emotionSpecific;
         private String behavior;
         private String result;
-=======
-    public class MonthlyDairy {
+    }
+
+    public class MonthlyDiary {
         private boolean isSuccess;
         private String code;
         private String message;
-        private List<DiarySummaries> result;
+        private ArrayList<String> diarySummaries;
 
-        public List<DiarySummaries> getResult() {
-            return this.result;
+        public ArrayList<String> getDiarySummaries() {
+            return this.diarySummaries;
         }
->>>>>>> d9c2f604c538fb8d314a072b45a297abd96e967a
+
     }
 }

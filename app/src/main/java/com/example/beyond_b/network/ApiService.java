@@ -33,7 +33,7 @@ public interface ApiService {
     @GET("api/diary/{diaryId}/detail")
     Call<ApiResponse.Diary>
     @GET("api/diary/monthly")
-    Call<ApiResponse.>
+    Call<ApiResponse.MonthlyDiary> monthlyDiary(@Query("year") String year, @Query("month") String month);
     //bookRecommend
     @GET("api/book/recommend")
     Call<ApiResponse.BookRecommend> recommendBook(@Query("emotion") String emotion);

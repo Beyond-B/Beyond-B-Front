@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.beyond_b.R;
+import com.example.beyond_b.book.model.DiarySummaries;
 import com.example.beyond_b.databinding.FragmentDiaryBinding;
 import com.example.beyond_b.diary.write.firstWriteActivity;
 import com.example.beyond_b.network.ApiResponse;
@@ -30,6 +31,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -142,8 +144,29 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+    private ArrayList<String> daysInMonthNumArray(LocalDate date) {
+        ArrayList<String> daysInMonthArray = new ArrayList<>();
+        YearMonth yearMonth = YearMonth.from(date);
+        int daysInMonth = yearMonth.lengthOfMonth();
+        LocalDate firstOfMonth = date.withDayOfMonth(1);
+        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
+
+        for (int i = 1; i <= daysInMonth; i++) {
+            daysInMonthArray.add(String.valueOf(i));
+        }
+
+        return daysInMonthArray;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private String monthFromDate(LocalDate date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
+        return date.format(formatter);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private String monthFromDateNum(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
         return date.format(formatter);
     }
 
@@ -203,6 +226,32 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
 
             @Override
             public void onFailure(Call<ApiResponse.BookResponse> call, Throwable t) {
+                Log.e("API Error", "Failed to fetch book details", t);
+            }
+        });
+    }
+
+    //한달간 일기 조회
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void fetchMonthlyDiary(){
+        Retrofit retrofit = RetrofitClient.getClient(accessToken);
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<ApiResponse.MonthlyDiary> call = apiService.monthlyDiary(yearFromDate(selectedDate) ,monthFromDateNum(selectedDate));
+        call.enqueue(new Callback<ApiResponse.MonthlyDiary>() {
+            @Override
+            public void onResponse(@NonNull Call<ApiResponse.MonthlyDiary> call, Response<ApiResponse.MonthlyDiary> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ArrayList<String> daysInMonth = daysInMonthNumArray(selectedDate);
+
+                    DiarySummary diarySummary = new DiarySummary();
+
+                    ArrayList<String> diarySummaries = diarySummary.getdiarySummaries();
+                    diarySummaries
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse.MonthlyDiary> call, Throwable t) {
                 Log.e("API Error", "Failed to fetch book details", t);
             }
         });
