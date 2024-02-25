@@ -32,8 +32,6 @@ public interface ApiService {
     Call<ApiResponse.DiaryEditResponse> editDiary();
     @GET("api/diary/{diaryId}/detail")
     Call<ApiResponse.Diary>
-    @POST("api/diary/create")
-    Call<ApiResponse.>
     @GET("api/diary/monthly")
     Call<ApiResponse.>
     //bookRecommend
