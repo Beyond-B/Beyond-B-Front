@@ -28,12 +28,10 @@ public interface ApiService {
     Call<ApiResponse.QuizSubmitResponse> submitQuiz(@Body BookQuizSubmit submit);
 
     // Diary API
-    @PATCH("api/diary")
-    Call<ApiResponse.DiaryEditResponse> editDiary();
     @GET("api/diary/{diaryId}/detail")
-    Call<ApiResponse.Diary>
+    Call<ApiResponse.DiaryDetailResponse> getDetailDiary(@Path("diaryId") int diaryId);
     @GET("api/diary/monthly")
-    Call<ApiResponse.MonthlyDiary> monthlyDiary(@Query("year") String year, @Query("month") String month);
+    Call<ApiResponse.MonthlyDiaryResponse> monthlyDiary(@Query("year") String year, @Query("month") String month);
     //bookRecommend
     @GET("api/book/recommend")
     Call<ApiResponse.BookRecommend> recommendBook(@Query("emotion") String emotion);

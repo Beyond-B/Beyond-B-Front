@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.beyond_b.R;
-import com.example.beyond_b.book.model.DiarySummaries;
 import com.example.beyond_b.databinding.FragmentDiaryBinding;
 import com.example.beyond_b.diary.write.firstWriteActivity;
 import com.example.beyond_b.membership.DatabaseHelper;
@@ -32,7 +31,6 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,6 +48,9 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     private TextView monthText, yearText;
     private RecyclerView calenderRecyclerView;
     private LocalDate selectedDate;
+
+    private int diaryId; // 이거 클릭한 아이템의 다이어리 id를 넘겨야지 세부 다이어리 볼 수 있어.
+    //api에서 가져온 데이터 중 다이어리id 값을 이 변수에 저장해줘. newInstance연결은 미리 해뒀어.
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -147,13 +148,23 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         return daysInMonthArray;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private ArrayList<String> daysInMonthNumArray(LocalDate date) {
         ArrayList<String> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = YearMonth.from(date);
-        int daysInMonth = yearMonth.lengthOfMonth();
-        LocalDate firstOfMonth = date.withDayOfMonth(1);
-        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
+        YearMonth yearMonth = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            yearMonth = YearMonth.from(date);
+        }
+        int daysInMonth = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            daysInMonth = yearMonth.lengthOfMonth();
+        }
+        LocalDate firstOfMonth = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            firstOfMonth = date.withDayOfMonth(1);
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
+        }
 
         for (int i = 1; i <= daysInMonth; i++) {
             daysInMonthArray.add(String.valueOf(i));
@@ -162,22 +173,40 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         return daysInMonthArray;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     private String monthFromDate(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");
-        return date.format(formatter);
+        DateTimeFormatter formatter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatter = DateTimeFormatter.ofPattern("MMM");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return date.format(formatter);
+        }
+        return null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     private String monthFromDateNum(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
-        return date.format(formatter);
+        DateTimeFormatter formatter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatter = DateTimeFormatter.ofPattern("MM");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return date.format(formatter);
+        }
+        return null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     private String yearFromDate(LocalDate date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyy");
-        return date.format(formatter);
+        DateTimeFormatter formatter = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatter = DateTimeFormatter.ofPattern("yyyy");
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return date.format(formatter);
+        }
+        return null;
     }
 
     private void initiWidgets() {
@@ -186,10 +215,13 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         yearText = binding.diaryYear;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void previousMonthAction(View view){
-        selectedDate = selectedDate.minusMonths(1);
-        setMonthView();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            selectedDate = selectedDate.minusMonths(1);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setMonthView();
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -206,7 +238,7 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         if(!dayText.equals("") && moodImg.getVisibility() == View.VISIBLE){
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.fragment_container, CalendarCellClickFragment.newInstance(dayText, dayText))
+            transaction.replace(R.id.fragment_container, CalendarCellClickFragment.newInstance(diaryId))
                     .addToBackStack(null)
                     .commit();
         }
@@ -237,26 +269,24 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     }
 
     //한달간 일기 조회
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void fetchMonthlyDiary(){
         Retrofit retrofit = RetrofitClient.getClient(accessToken);
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<ApiResponse.MonthlyDiary> call = apiService.monthlyDiary(yearFromDate(selectedDate) ,monthFromDateNum(selectedDate));
-        call.enqueue(new Callback<ApiResponse.MonthlyDiary>() {
+        Call<ApiResponse.MonthlyDiaryResponse> call = apiService.monthlyDiary(yearFromDate(selectedDate) ,monthFromDateNum(selectedDate));
+        call.enqueue(new Callback<ApiResponse.MonthlyDiaryResponse>() {
             @Override
-            public void onResponse(@NonNull Call<ApiResponse.MonthlyDiary> call, Response<ApiResponse.MonthlyDiary> response) {
+            public void onResponse(@NonNull Call<ApiResponse.MonthlyDiaryResponse> call, Response<ApiResponse.MonthlyDiaryResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    ArrayList<String> daysInMonth = daysInMonthNumArray(selectedDate);
-
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        ArrayList<String> daysInMonth = daysInMonthNumArray(selectedDate);
+                    }
                     DiarySummary diarySummary = new DiarySummary();
-
                     ArrayList<String> diarySummaries = diarySummary.getdiarySummaries();
-                    diarySummaries
                 }
             }
 
             @Override
-            public void onFailure(Call<ApiResponse.MonthlyDiary> call, Throwable t) {
+            public void onFailure(Call<ApiResponse.MonthlyDiaryResponse> call, Throwable t) {
                 Log.e("API Error", "Failed to fetch book details", t);
             }
         });

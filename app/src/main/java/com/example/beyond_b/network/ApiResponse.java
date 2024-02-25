@@ -4,9 +4,9 @@ import com.example.beyond_b.book.model.Book;
 import com.example.beyond_b.book.model.BookContent;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.book.model.BookQuiz;
-import com.example.beyond_b.book.model.DiarySummaries;
+import com.example.beyond_b.diary.DiarySummaries;
+import com.example.beyond_b.diary.DiaryDetail;
 import com.example.beyond_b.my_page.MyPage;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,10 +85,7 @@ public class ApiResponse {
         private String result;
     }
 
-<<<<<<< HEAD
-
-    public  class DiaryCreateResponse{
-
+    public  class DiaryCreateResponse {
         private String date;
         private String emotion;
         private String event;
@@ -96,17 +93,26 @@ public class ApiResponse {
         private String emotionSpecific;
         private String behavior;
         private String result;
-<<<<<<< HEAD
     }
 
-
-    public class MonthlyDairy {
+    public class DiaryDetailResponse {
         private boolean isSuccess;
         private String code;
         private String message;
-        private ArrayList<String> diarySummaries;
+        private DiaryDetail result;
 
-        public ArrayList<String> getDiarySummaries() {
+        public DiaryDetail getResult(){
+            return this.result;
+        }
+    }
+
+    public class MonthlyDiaryResponse {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        private ArrayList<DiarySummaries> diarySummaries;
+
+        public ArrayList<DiarySummaries> getDiarySummaries() {
             return this.diarySummaries;
         }
     }

@@ -79,8 +79,6 @@ public class BookDetailFragment extends Fragment {
                     ApiResponse.BookDetailResponse data = response.body();
                     BookDetailResult item = response.body().getResult();
                     bind(item);
-                    System.out.println(item.getBookContent().getBookSummary());
-
                 }
             }
 

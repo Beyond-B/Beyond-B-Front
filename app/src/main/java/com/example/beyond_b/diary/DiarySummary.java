@@ -1,10 +1,8 @@
 package com.example.beyond_b.diary;
 
-import com.example.beyond_b.book.model.DiarySummaries;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DiarySummary {
     @SerializedName("isSuccess")

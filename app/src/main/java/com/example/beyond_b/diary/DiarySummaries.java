@@ -1,4 +1,4 @@
-package com.example.beyond_b.book.model;
+package com.example.beyond_b.diary;
 
 import com.google.gson.annotations.SerializedName;
 
