@@ -22,7 +22,7 @@ public class firstWriteActivity extends AppCompatActivity {
         ImageView happy = findViewById(R.id.diary_happy);
         ImageView depressed = findViewById(R.id.diary_depressed);
         ImageView angry = findViewById(R.id.diary_angry);
-        ImageView surprized = findViewById(R.id.diary_surprised);
+        ImageView surprised = findViewById(R.id.diary_surprised);
         ImageView sadness = findViewById(R.id.diary_sadness);
         ImageView worried = findViewById(R.id.diary_worried);
 
@@ -40,6 +40,7 @@ public class firstWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(firstWriteActivity.this, secondWriteActivity.class);
+                intent.putExtra("emotion", "HAPPY");
                 startActivity(intent);
 
                 finish();
@@ -50,6 +51,7 @@ public class firstWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(firstWriteActivity.this, secondWriteActivity.class);
+                intent.putExtra("emotion", "DEPRESSED");
                 startActivity(intent);
 
                 finish();
@@ -60,16 +62,18 @@ public class firstWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(firstWriteActivity.this, secondWriteActivity.class);
+                intent.putExtra("emotion", "ANGRY");
                 startActivity(intent);
 
                 finish();
             }
         });
 
-        surprized.setOnClickListener(new View.OnClickListener() {
+        surprised.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(firstWriteActivity.this, secondWriteActivity.class);
+                intent.putExtra("emotion", "SURPRISED");
                 startActivity(intent);
 
                 finish();
@@ -80,6 +84,7 @@ public class firstWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(firstWriteActivity.this, secondWriteActivity.class);
+                intent.putExtra("emotion", "SADNESS");
                 startActivity(intent);
 
                 finish();
@@ -90,6 +95,7 @@ public class firstWriteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(firstWriteActivity.this, secondWriteActivity.class);
+                intent.putExtra("emotion", "WORRIED");
                 startActivity(intent);
 
                 finish();

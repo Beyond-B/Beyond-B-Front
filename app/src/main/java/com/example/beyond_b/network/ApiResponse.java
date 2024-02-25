@@ -4,6 +4,7 @@ import com.example.beyond_b.book.model.Book;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.book.model.BookQuiz;
 import com.example.beyond_b.my_page.MyPage;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -67,6 +68,16 @@ public class ApiResponse {
         private boolean isSuccess;
         private String code;
         private String message;
+        private String result;
+    }
+
+    public  class DiaryCreateResponse{
+        private String date;
+        private String emotion;
+        private String event;
+        private String thought;
+        private String emotionSpecific;
+        private String behavior;
         private String result;
     }
 }
