@@ -79,12 +79,8 @@ public class sixthWriteActivity extends AppCompatActivity {
                 String result = editText.getText().toString();
                 if(!result.equals("")){
                     fetchDiary(date, emotion, event, thought, emotionSpecific, behavior, result);
-
+                    finish();
                 }
-
-
-
-                finish();
             }
         });
     }

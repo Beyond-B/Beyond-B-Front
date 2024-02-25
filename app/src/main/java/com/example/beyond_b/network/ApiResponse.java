@@ -1,8 +1,10 @@
 package com.example.beyond_b.network;
 
 import com.example.beyond_b.book.model.Book;
+import com.example.beyond_b.book.model.BookContent;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.book.model.BookQuiz;
+import com.example.beyond_b.book.model.DiarySummaries;
 import com.example.beyond_b.my_page.MyPage;
 import com.google.gson.annotations.SerializedName;
 
@@ -28,6 +30,17 @@ public class ApiResponse {
         private BookDetailResult result;
 
         public BookDetailResult getResult() {
+            return this.result;
+        }
+    }
+
+    public class BookRecommend{
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        private BookContent result;
+
+        public BookContent getResult() {
             return this.result;
         }
     }
@@ -71,6 +84,7 @@ public class ApiResponse {
         private String result;
     }
 
+<<<<<<< HEAD
     public  class DiaryCreateResponse{
         private String date;
         private String emotion;
@@ -79,5 +93,16 @@ public class ApiResponse {
         private String emotionSpecific;
         private String behavior;
         private String result;
+=======
+    public class MonthlyDairy {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        private List<DiarySummaries> result;
+
+        public List<DiarySummaries> getResult() {
+            return this.result;
+        }
+>>>>>>> d9c2f604c538fb8d314a072b45a297abd96e967a
     }
 }
