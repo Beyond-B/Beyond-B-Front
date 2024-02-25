@@ -12,8 +12,8 @@ public class DiarySummary {
     @SerializedName("message")
     private String message;
 
-    @SerializedName("diarySummaries")
-    private ArrayList<String> diarySummaries;
+    @SerializedName("result")
+    private ArrayList<DiarySummaries> result;
 
     @SerializedName("date")
     private String date;
@@ -21,12 +21,8 @@ public class DiarySummary {
     @SerializedName("feeling")
     private String feeling;
 
-    public boolean getisSuccess(){
-        return isSuccess;
-    }
-
-    public ArrayList<String> getdiarySummaries(){
-        return diarySummaries;
+    public ArrayList<DiarySummaries> getResult(){
+        return result;
     }
 
     public String getDate(){

@@ -125,6 +125,8 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(requireActivity(), 7);
         calenderRecyclerView.setLayoutManager(layoutManager);
         calenderRecyclerView.setAdapter(calendarAdapter);
+
+        fetchMonthlyDiary();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -247,26 +249,6 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         }
     }
 
-    //책 추천 api
-    private void fetchRecommendBook(String emotion) {
-        Retrofit retrofit = RetrofitClient.getClient(accessToken);
-        ApiService apiService = retrofit.create(ApiService.class);
-        Call<ApiResponse.BookRecommend> call = apiService.recommendBook(emotion);
-        call.enqueue(new Callback<ApiResponse.BookRecommend>() {
-            @Override
-            public void onResponse(@NonNull Call<ApiResponse.BookRecommend> call, Response<ApiResponse.BookRecommend> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    response.body().getResult();
-                    Log.d("recommendBook","Success RecommendBook");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse.BookRecommend> call, Throwable t) {
-                Log.e("API Error", "Failed to fetch book details", t);
-            }
-        });
-    }
 
     //한달간 일기 조회
     private void fetchMonthlyDiary(){
@@ -277,11 +259,28 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
             @Override
             public void onResponse(@NonNull Call<ApiResponse.MonthlyDiaryResponse> call, Response<ApiResponse.MonthlyDiaryResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                        ArrayList<String> daysInMonth = daysInMonthNumArray(selectedDate);
-                    }
+                    //날짜 받아오기
+                    ArrayList<String> daysInMonth = daysInMonthNumArray(selectedDate);
+
                     DiarySummary diarySummary = new DiarySummary();
-                    ArrayList<String> diarySummaries = diarySummary.getdiarySummaries();
+                    ArrayList<DiarySummaries> diarySummaries = diarySummary.getResult();
+
+                    //null 에러
+                    for (DiarySummaries summary : diarySummaries) {
+                        String date = summary.getDate();
+                        String day = date.substring(date.lastIndexOf('-') + 1);
+                        if (daysInMonth.contains(day)) {
+                            int index = daysInMonth.indexOf(day);
+                            RecyclerView.ViewHolder viewHolder = calenderRecyclerView.findViewHolderForAdapterPosition(index);
+                            if (viewHolder instanceof CalendarViewHolder) {
+                                CalendarViewHolder calendarViewHolder = (CalendarViewHolder) viewHolder;
+                                if(summary.getFeeling().equals("HAPPY")){
+                                    calendarViewHolder.moodImg.setVisibility(View.VISIBLE);
+                                    calendarViewHolder.moodImg.setImageResource(R.drawable.ic_happy);
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

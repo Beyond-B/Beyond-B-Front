@@ -2,6 +2,7 @@ package com.example.beyond_b.diary.write;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -79,6 +80,12 @@ public class sixthWriteActivity extends AppCompatActivity {
                 String result = editText.getText().toString();
                 if(!result.equals("")){
                     fetchDiary(date, emotion, event, thought, emotionSpecific, behavior, result);
+
+                    CustomDialogFragment fragment = new CustomDialogFragment();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, fragment)
+                            .commit();
                     finish();
                 }
             }

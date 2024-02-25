@@ -10,6 +10,13 @@ public class DiarySummaries {
     @SerializedName("feeling")
     private String feeling;
 
+    public String getDate(){
+        return date;
+    }
+
+    public String getFeeling(){
+        return feeling;
+    }
 
 
 }
