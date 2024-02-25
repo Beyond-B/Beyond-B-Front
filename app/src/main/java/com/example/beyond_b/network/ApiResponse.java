@@ -85,7 +85,10 @@ public class ApiResponse {
         private String result;
     }
 
-    public  class DiaryCreateResponse {
+<<<<<<< HEAD
+
+    public  class DiaryCreateResponse{
+
         private String date;
         private String emotion;
         private String event;
@@ -93,9 +96,11 @@ public class ApiResponse {
         private String emotionSpecific;
         private String behavior;
         private String result;
+<<<<<<< HEAD
     }
 
-    public class MonthlyDiary {
+
+    public class MonthlyDairy {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -104,6 +109,5 @@ public class ApiResponse {
         public ArrayList<String> getDiarySummaries() {
             return this.diarySummaries;
         }
-
     }
 }

@@ -23,6 +23,7 @@ import com.example.beyond_b.R;
 import com.example.beyond_b.book.model.DiarySummaries;
 import com.example.beyond_b.databinding.FragmentDiaryBinding;
 import com.example.beyond_b.diary.write.firstWriteActivity;
+import com.example.beyond_b.membership.DatabaseHelper;
 import com.example.beyond_b.network.ApiResponse;
 import com.example.beyond_b.network.ApiService;
 import com.example.beyond_b.network.RetrofitClient;
@@ -44,6 +45,7 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
+    private String accessToken = "";
     private FragmentDiaryBinding binding;
     private TextView monthText, yearText;
     private RecyclerView calenderRecyclerView;
@@ -68,7 +70,6 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -77,6 +78,9 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
                              Bundle savedInstanceState) {
         binding= FragmentDiaryBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
+
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        accessToken = db.getAccessToken();
 
         //글쓰기 버튼 클릭시
         binding.diaryWriteFab.setOnClickListener(new View.OnClickListener() {
@@ -215,17 +219,18 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     private void fetchRecommendBook(String emotion) {
         Retrofit retrofit = RetrofitClient.getClient(accessToken);
         ApiService apiService = retrofit.create(ApiService.class);
-        Call<ApiResponse.BookResponse> call = apiService.getBook(emotion);
-        call.enqueue(new Callback<ApiResponse.BookResponse>() {
+        Call<ApiResponse.BookRecommend> call = apiService.recommendBook(emotion);
+        call.enqueue(new Callback<ApiResponse.BookRecommend>() {
             @Override
-            public void onResponse(@NonNull Call<ApiResponse.BookResponse> call, Response<ApiResponse.BookResponse> response) {
+            public void onResponse(@NonNull Call<ApiResponse.BookRecommend> call, Response<ApiResponse.BookRecommend> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    bookListAdapter.updateBooks(response.body().getResult());
+                    response.body().getResult();
+                    Log.d("recommendBook","Success RecommendBook");
                 }
             }
 
             @Override
-            public void onFailure(Call<ApiResponse.BookResponse> call, Throwable t) {
+            public void onFailure(Call<ApiResponse.BookRecommend> call, Throwable t) {
                 Log.e("API Error", "Failed to fetch book details", t);
             }
         });
