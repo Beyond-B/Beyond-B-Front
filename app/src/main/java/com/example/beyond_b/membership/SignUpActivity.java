@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.beyond_b.databinding.ActivitySignUpBinding;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements SignUpRequest.SignupCallback {
     private ActivitySignUpBinding binding;
 
     @Override
@@ -33,16 +33,29 @@ public class SignUpActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
-                new Thread(){
-                    public void run(){
-                        SignUpRequest signUpRequest = new SignUpRequest();
-                        signUpRequest.signUp(username,age,email,password);
+                new Thread() {
+                    public void run() {
+                        SignUpRequest signUpRequest = new SignUpRequest(SignUpActivity.this);
+                        signUpRequest.signUp(username, age, email, password);
                     }
                 }.start();
-                finish();
-                Toast.makeText(getApplicationContext(),"회원가입 성공", Toast.LENGTH_LONG).show();
             }
         });
 
+    }
+
+    @Override
+    public void onSignupResponse(boolean isSuccess, String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (isSuccess) {
+                    finish();
+                    Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(SignUpActivity.this, message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
