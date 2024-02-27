@@ -1,4 +1,4 @@
-package com.example.beyond_b.diary;
+package com.example.beyond_b.diary.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beyond_b.R;
-import com.example.beyond_b.databinding.CalendarCellBinding;
 
 import java.util.ArrayList;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
 
     private final ArrayList<String> dayofMonth;
+    private final ArrayList<Integer> diaryIds;
     private final onItemListener onItemListener;
 
-    public CalendarAdapter(ArrayList<String> dayofMonth, CalendarAdapter.onItemListener onItemListener) {
+
+    public CalendarAdapter(ArrayList<String> dayofMonth, ArrayList<Integer> diaryIds, CalendarAdapter.onItemListener onItemListener) {
         this.dayofMonth = dayofMonth;
+        this.diaryIds = diaryIds;
         this.onItemListener = onItemListener;
     }
 
@@ -36,6 +38,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position) {
         holder.dayofMonth.setText(dayofMonth.get(position));
+        holder.setDiaryId(diaryIds.get(position));
     }
 
     @Override
@@ -44,6 +47,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     }
 
     public interface onItemListener{
-        void onItemClick(int position, String dayText, ImageView moodImg);
+        void onItemClick(int position, int diaryId, String dayText, ImageView moodImg);
     }
 }

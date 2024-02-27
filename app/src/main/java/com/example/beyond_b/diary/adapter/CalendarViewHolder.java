@@ -1,7 +1,6 @@
-package com.example.beyond_b.diary;
+package com.example.beyond_b.diary.adapter;
 
 
-import android.content.res.Resources;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.beyond_b.R;
-import com.example.beyond_b.databinding.CalendarCellBinding;
 
 public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public final TextView dayofMonth;
     public final ImageView moodImg;
+    private int diaryId;
     private final CalendarAdapter.onItemListener onItemListener;
 
     public CalendarViewHolder(@NonNull View itemView, CalendarAdapter.onItemListener onItemListener) {
@@ -26,8 +25,12 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
         itemView.setOnClickListener(this);
     }
 
+    public void setDiaryId(int diaryId) {
+        this.diaryId = diaryId;
+    }
+
     @Override
     public void onClick(View v) {
-        onItemListener.onItemClick(getAdapterPosition(), (String) dayofMonth.getText(), moodImg);
+        onItemListener.onItemClick(getAdapterPosition(), diaryId, (String) dayofMonth.getText(), moodImg);
     }
 }

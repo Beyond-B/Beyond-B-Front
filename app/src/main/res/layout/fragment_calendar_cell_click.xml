@@ -10,7 +10,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".diary.CalendarCellClickFragment">
+    tools:context=".diary.view.CalendarCellClickFragment">
+
+    <ImageButton
+        android:id="@+id/diary_cancel_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/bg_transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"/>
 
     <TextView
         android:id="@+id/diary_today"
@@ -18,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/pretendard_medium"
-        android:text="February 20th"
+        android:text="February 20"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

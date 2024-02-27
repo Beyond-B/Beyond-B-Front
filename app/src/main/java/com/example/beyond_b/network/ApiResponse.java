@@ -3,13 +3,17 @@ package com.example.beyond_b.network;
 import com.example.beyond_b.book.model.Book;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.book.model.BookQuiz;
+import com.example.beyond_b.diary.model.Diary;
+import com.example.beyond_b.diary.model.DiarySummaries;
+import com.example.beyond_b.diary.model.DiaryDetailContent;
+import com.example.beyond_b.diary.model.BookRecommendContent;
 import com.example.beyond_b.my_page.MyPage;
 
 import java.util.List;
 
 public class ApiResponse {
 
-    public class BookResponse{
+    public class BookResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -20,7 +24,7 @@ public class ApiResponse {
         }
     }
 
-    public class BookDetailResponse{
+    public class BookDetailResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -31,7 +35,18 @@ public class ApiResponse {
         }
     }
 
-    public class MyPageResponse{
+    public class BookRecommend {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        private BookRecommendContent result;
+
+        public BookRecommendContent getResult() {
+            return this.result;
+        }
+    }
+
+    public class MyPageResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -42,7 +57,7 @@ public class ApiResponse {
         }
     }
 
-    public class QuizResponse{
+    public class QuizResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -68,5 +83,38 @@ public class ApiResponse {
         private String code;
         private String message;
         private String result;
+    }
+
+    public class DiaryCreateResponse {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        public Diary result;
+
+        public Diary getResult() {
+            return result;
+        }
+    }
+
+    public class DiaryDetailResponse {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        private DiaryDetailContent result;
+
+        public DiaryDetailContent getResult() {
+            return this.result;
+        }
+    }
+
+    public class MonthlyDiaryResponse {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        private DiarySummaries result;
+
+        public DiarySummaries getResult() {
+            return this.result;
+        }
     }
 }

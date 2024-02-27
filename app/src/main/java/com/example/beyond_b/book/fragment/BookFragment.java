@@ -59,7 +59,6 @@ public class BookFragment extends Fragment {
 
         // 저장된 액세스 토큰 검색
         accessToken = db.getAccessToken();
-        System.out.println("accessToken="+accessToken);
 
         bookBinding = FragmentBookBinding.inflate(inflater, container, false);
         View view = bookBinding.getRoot();

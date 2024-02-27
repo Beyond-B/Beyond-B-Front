@@ -33,15 +33,16 @@
         android:id="@+id/diary_third_write_editText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:hint="Please enter your story"
-        android:fontFamily="@font/nanum_ggocnaeum"
+        android:layout_marginTop="28dp"
         android:background="@null"
+        android:fontFamily="@font/nanum_ggocnaeum"
         android:gravity="center"
+        android:hint="Please enter your story"
         android:textSize="15dp"
-        android:layout_marginTop="30dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <LinearLayout
         android:layout_width="wrap_content"

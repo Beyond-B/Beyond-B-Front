@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
-
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,28 +14,31 @@
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BeyondB"
-        tools:targetApi="31"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".diary.write.CustomDialogActivity"
+            android:exported="false" />
         <activity
             android:name=".membership.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".diary.write.sixthWriteActivity"
+            android:name=".diary.view.write.sixthWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".diary.write.fifthWriteActivity"
+            android:name=".diary.view.write.fifthWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".diary.write.fourthWriteActivity"
+            android:name=".diary.view.write.fourthWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".diary.write.thirdWriteActivity"
+            android:name=".diary.view.write.thirdWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".diary.write.secondWriteActivity"
+            android:name=".diary.view.write.secondWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".diary.write.firstWriteActivity"
+            android:name=".diary.view.write.firstWriteActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
