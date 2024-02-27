@@ -1,8 +1,7 @@
 package com.example.beyond_b.network;
 
-import com.example.beyond_b.book.model.BookQuiz;
 import com.example.beyond_b.book.model.BookQuizSubmit;
-import com.example.beyond_b.diary.Diary;
+import com.example.beyond_b.diary.model.Diary;
 import com.example.beyond_b.my_page.MyPage;
 
 import retrofit2.Call;
@@ -43,6 +42,6 @@ public interface ApiService {
     Call<ApiResponse.MyPageResponse> getMyPage();
     @DELETE("user")
     Call<ApiResponse.DeleteAccountResponse> deleteAccount();
-    @POST("/api/diary/create")
-    Call<ApiResponse.DiaryCreateResponse> creatDiary(@Body Diary diary);
+    @POST("api/diary/create")
+    Call<ApiResponse.DiaryCreateResponse> createDiary(@Body Diary diary);
 }

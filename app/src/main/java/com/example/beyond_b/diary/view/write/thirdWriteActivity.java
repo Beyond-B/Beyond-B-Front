@@ -1,4 +1,4 @@
-package com.example.beyond_b.diary.write;
+package com.example.beyond_b.diary.view.write;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,22 +11,21 @@ import android.widget.ImageButton;
 
 import com.example.beyond_b.R;
 
-public class fourthWriteActivity extends AppCompatActivity {
+public class thirdWriteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fourth_write);
+        setContentView(R.layout.activity_third_write);
 
         Intent intent = getIntent();
         String emotion = intent.getStringExtra("emotion");
         String event = intent.getStringExtra("event");
-        String thought = intent.getStringExtra("thought");
 
-        ImageButton cancel = findViewById(R.id.fourth_write_cancel);
-        Button preBtn = findViewById(R.id.diary_fourth_write_pre_btn);
-        Button nextBtn = findViewById(R.id.diary_fourth_write_next_btn);
-        EditText editText = findViewById(R.id.diary_fourth_write_editText);
+        ImageButton cancel = findViewById(R.id.third_write_cancel);
+        Button preBtn = findViewById(R.id.diary_third_write_pre_btn);
+        Button nextBtn = findViewById(R.id.diary_third_write_next_btn);
+        EditText editText = findViewById(R.id.diary_third_write_editText);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +37,7 @@ public class fourthWriteActivity extends AppCompatActivity {
         preBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(fourthWriteActivity.this, thirdWriteActivity.class);
+                Intent intent = new Intent(thirdWriteActivity.this, secondWriteActivity.class);
                 startActivity(intent);
 
                 finish();
@@ -48,15 +47,14 @@ public class fourthWriteActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emotionSpecific = editText.getText().toString();
-                if(!emotionSpecific.equals("")) {
+                String thought = editText.getText().toString();
+                if(!thought.equals("")) {
 
-                    Intent intent = new Intent(fourthWriteActivity.this, fifthWriteActivity.class);
+                    Intent intent = new Intent(thirdWriteActivity.this, fourthWriteActivity.class);
 
                     intent.putExtra("emotion", emotion);
                     intent.putExtra("event", event);
                     intent.putExtra("thought", thought);
-                    intent.putExtra("emotionSpecific", emotionSpecific);
 
                     startActivity(intent);
 

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.beyond_b.book.fragment.BookFragment;
-import com.example.beyond_b.diary.DiaryFragment;
+import com.example.beyond_b.diary.view.DiaryFragment;
 import com.example.beyond_b.my_page.MyPageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;

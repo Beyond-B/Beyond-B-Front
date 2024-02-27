@@ -1,9 +1,9 @@
-package com.example.beyond_b.diary;
+package com.example.beyond_b.diary.model;
 
 import com.google.gson.annotations.SerializedName;
 public class Diary {
 
-    public Diary(String date, String emotion, String event, String thought, String emotionSpecific, String behavior,String result){
+    public Diary(String date, String emotion, String event, String thought, String emotionSpecific, String behavior, String result){
         this.date = date;
         this.emotion = emotion;
         this.thought = thought;
@@ -31,30 +31,6 @@ public class Diary {
 
     @SerializedName("result")
     private String result;
-
-    public String getDate(){
-        return date;
-    }
-
-    public String getEmotion(){
-        return emotion;
-    }
-
-    public String getEvent(){
-        return event;
-    }
-
-    public String getThought(){
-        return thought;
-    }
-
-    public String getEmotionSpecific(){
-        return emotionSpecific;
-    }
-
-    public String getBehavior(){
-        return behavior;
-    }
 
     public String getResult(){
         return result;

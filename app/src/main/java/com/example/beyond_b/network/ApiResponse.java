@@ -1,19 +1,19 @@
 package com.example.beyond_b.network;
 
 import com.example.beyond_b.book.model.Book;
-import com.example.beyond_b.book.model.BookContent;
 import com.example.beyond_b.book.model.BookDetailResult;
 import com.example.beyond_b.book.model.BookQuiz;
-import com.example.beyond_b.diary.DiarySummaries;
-import com.example.beyond_b.diary.DiaryDetail;
+import com.example.beyond_b.diary.model.Diary;
+import com.example.beyond_b.diary.model.DiarySummaries;
+import com.example.beyond_b.diary.model.DiaryDetailContent;
+import com.example.beyond_b.diary.model.BookRecommendContent;
 import com.example.beyond_b.my_page.MyPage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ApiResponse {
 
-    public class BookResponse{
+    public class BookResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -24,7 +24,7 @@ public class ApiResponse {
         }
     }
 
-    public class BookDetailResponse{
+    public class BookDetailResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -35,18 +35,18 @@ public class ApiResponse {
         }
     }
 
-    public class BookRecommend{
+    public class BookRecommend {
         private boolean isSuccess;
         private String code;
         private String message;
-        private BookContent result;
+        private BookRecommendContent result;
 
-        public BookContent getResult() {
+        public BookRecommendContent getResult() {
             return this.result;
         }
     }
 
-    public class MyPageResponse{
+    public class MyPageResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -57,7 +57,7 @@ public class ApiResponse {
         }
     }
 
-    public class QuizResponse{
+    public class QuizResponse {
         private boolean isSuccess;
         private String code;
         private String message;
@@ -85,23 +85,24 @@ public class ApiResponse {
         private String result;
     }
 
-    public  class DiaryCreateResponse {
-        private String date;
-        private String emotion;
-        private String event;
-        private String thought;
-        private String emotionSpecific;
-        private String behavior;
-        private String result;
+    public class DiaryCreateResponse {
+        private boolean isSuccess;
+        private String code;
+        private String message;
+        public Diary result;
+
+        public Diary getResult() {
+            return result;
+        }
     }
 
     public class DiaryDetailResponse {
         private boolean isSuccess;
         private String code;
         private String message;
-        private DiaryDetail result;
+        private DiaryDetailContent result;
 
-        public DiaryDetail getResult(){
+        public DiaryDetailContent getResult() {
             return this.result;
         }
     }
@@ -110,10 +111,10 @@ public class ApiResponse {
         private boolean isSuccess;
         private String code;
         private String message;
-        private ArrayList<DiarySummaries> diarySummaries;
+        private DiarySummaries result;
 
-        public ArrayList<DiarySummaries> getDiarySummaries() {
-            return this.diarySummaries;
+        public DiarySummaries getResult() {
+            return this.result;
         }
     }
 }

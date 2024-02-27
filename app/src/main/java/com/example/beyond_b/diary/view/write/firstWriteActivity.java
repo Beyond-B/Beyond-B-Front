@@ -1,4 +1,4 @@
-package com.example.beyond_b.diary.write;
+package com.example.beyond_b.diary.view.write;
 
 import androidx.appcompat.app.AppCompatActivity;
 

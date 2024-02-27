@@ -1,4 +1,4 @@
-package com.example.beyond_b.diary;
+package com.example.beyond_b.diary.view;
 
 import android.content.Intent;
 import android.os.Build;
@@ -21,7 +21,10 @@ import android.widget.TextView;
 
 import com.example.beyond_b.R;
 import com.example.beyond_b.databinding.FragmentDiaryBinding;
-import com.example.beyond_b.diary.write.firstWriteActivity;
+import com.example.beyond_b.diary.adapter.CalendarViewHolder;
+import com.example.beyond_b.diary.adapter.CalendarAdapter;
+import com.example.beyond_b.diary.model.DiaryCalendar;
+import com.example.beyond_b.diary.view.write.firstWriteActivity;
 import com.example.beyond_b.membership.DatabaseHelper;
 import com.example.beyond_b.network.ApiResponse;
 import com.example.beyond_b.network.ApiService;
@@ -31,6 +34,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,9 +52,9 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     private TextView monthText, yearText;
     private RecyclerView calenderRecyclerView;
     private LocalDate selectedDate;
+    private final ArrayList<Integer> diaryIds = new ArrayList<>();
 
-    private int diaryId; // 이거 클릭한 아이템의 다이어리 id를 넘겨야지 세부 다이어리 볼 수 있어.
-    //api에서 가져온 데이터 중 다이어리id 값을 이 변수에 저장해줘. newInstance연결은 미리 해뒀어.
+    private int diaryId;
 
     public DiaryFragment() {
         // Required empty public constructor
@@ -120,13 +124,20 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         yearText.setText(yearFromDate(selectedDate));
 
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
+        Log.d("size", String.valueOf(daysInMonth.size()));
+        for (int i = 0; i < daysInMonth.size(); i++) {
+            diaryIds.add(i,0); // 초기값으로 0
+        }
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
+        //한달 일기 불러오기
+        fetchMonthlyDiary();
+
+        Log.d("daryId", String.valueOf(diaryIds));
+
+        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, diaryIds, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(requireActivity(), 7);
         calenderRecyclerView.setLayoutManager(layoutManager);
         calenderRecyclerView.setAdapter(calendarAdapter);
-
-        fetchMonthlyDiary();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -149,32 +160,6 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
         }
         return daysInMonthArray;
     }
-
-    private ArrayList<String> daysInMonthNumArray(LocalDate date) {
-        ArrayList<String> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            yearMonth = YearMonth.from(date);
-        }
-        int daysInMonth = 0;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            daysInMonth = yearMonth.lengthOfMonth();
-        }
-        LocalDate firstOfMonth = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            firstOfMonth = date.withDayOfMonth(1);
-        }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
-        }
-
-        for (int i = 1; i <= daysInMonth; i++) {
-            daysInMonthArray.add(String.valueOf(i));
-        }
-
-        return daysInMonthArray;
-    }
-
 
     private String monthFromDate(LocalDate date){
         DateTimeFormatter formatter = null;
@@ -235,7 +220,7 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
 
     //날짜 클릭시 이벤트
     @Override
-    public void onItemClick(int position, String dayText, ImageView moodImg) {
+    public void onItemClick(int position, int diaryId, String dayText, ImageView moodImg) {
         //감정일기 작성해서 감정이모지 보일 시 작성한 일기 보여줌
         if(!dayText.equals("") && moodImg.getVisibility() == View.VISIBLE){
             FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
@@ -260,23 +245,49 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
             public void onResponse(@NonNull Call<ApiResponse.MonthlyDiaryResponse> call, Response<ApiResponse.MonthlyDiaryResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     //날짜 받아오기
-                    ArrayList<String> daysInMonth = daysInMonthNumArray(selectedDate);
+                    ArrayList<String> daysInMonth = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        daysInMonth = daysInMonthArray(selectedDate);
+                    }
 
-                    DiarySummary diarySummary = new DiarySummary();
-                    ArrayList<DiarySummaries> diarySummaries = diarySummary.getResult();
+                    //일기 list 불러오기
+                    ApiResponse.MonthlyDiaryResponse monthlyDiaryResponse = response.body();
+                    List<DiaryCalendar> list = monthlyDiaryResponse.getResult().getDiarySummaries();
 
-                    //null 에러
-                    for (DiarySummaries summary : diarySummaries) {
+                    //존재하는 일기 list만큼 반복하여 맞는 날짜의 posion에 감정 이모지 띄움
+                    for (DiaryCalendar summary : list) {
                         String date = summary.getDate();
                         String day = date.substring(date.lastIndexOf('-') + 1);
+
+                        //diaryId 저장
+                        int dayIndex = Integer.parseInt(day) - 1;
+                        diaryIds.set(dayIndex, summary.getDiaryId());
+
                         if (daysInMonth.contains(day)) {
                             int index = daysInMonth.indexOf(day);
                             RecyclerView.ViewHolder viewHolder = calenderRecyclerView.findViewHolderForAdapterPosition(index);
                             if (viewHolder instanceof CalendarViewHolder) {
                                 CalendarViewHolder calendarViewHolder = (CalendarViewHolder) viewHolder;
-                                if(summary.getFeeling().equals("HAPPY")){
+                                calendarViewHolder.setDiaryId(summary.getDiaryId());
+                                //감정별 경우의 수
+                                if (summary.getFeeling().equals("HAPPY")) {
                                     calendarViewHolder.moodImg.setVisibility(View.VISIBLE);
                                     calendarViewHolder.moodImg.setImageResource(R.drawable.ic_happy);
+                                } else if (summary.getFeeling().equals("DEPRESSED")) {
+                                    calendarViewHolder.moodImg.setVisibility(View.VISIBLE);
+                                    calendarViewHolder.moodImg.setImageResource(R.drawable.ic_depressed);
+                                } else if (summary.getFeeling().equals("SURPRISED")) {
+                                    calendarViewHolder.moodImg.setVisibility(View.VISIBLE);
+                                    calendarViewHolder.moodImg.setImageResource(R.drawable.ic_surprised);
+                                } else if (summary.getFeeling().equals("ANGRY")) {
+                                    calendarViewHolder.moodImg.setVisibility(View.VISIBLE);
+                                    calendarViewHolder.moodImg.setImageResource(R.drawable.ic_angry);
+                                } else if (summary.getFeeling().equals("SADNESS")) {
+                                    calendarViewHolder.moodImg.setVisibility(View.VISIBLE);
+                                    calendarViewHolder.moodImg.setImageResource(R.drawable.ic_sadness);
+                                } else if (summary.getFeeling().equals("WORRIED")) {
+                                    calendarViewHolder.moodImg.setVisibility(View.VISIBLE);
+                                    calendarViewHolder.moodImg.setImageResource(R.drawable.ic_worried);
                                 }
                             }
                         }

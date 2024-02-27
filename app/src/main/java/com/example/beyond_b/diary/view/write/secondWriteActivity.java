@@ -1,4 +1,4 @@
-package com.example.beyond_b.diary.write;
+package com.example.beyond_b.diary.view.write;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,23 +11,20 @@ import android.widget.ImageButton;
 
 import com.example.beyond_b.R;
 
-public class fifthWriteActivity extends AppCompatActivity {
+public class secondWriteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fifth_write);
+        setContentView(R.layout.activity_second_write);
 
         Intent intent = getIntent();
         String emotion = intent.getStringExtra("emotion");
-        String event = intent.getStringExtra("event");
-        String thought = intent.getStringExtra("thought");
-        String emotionSpecific = intent.getStringExtra("emotionSpecific");
 
-        ImageButton cancel = findViewById(R.id.fifth_write_cancel);
-        Button preBtn = findViewById(R.id.diary_fifth_write_pre_btn);
-        Button nextBtn = findViewById(R.id.diary_fifth_write_next_btn);
-        EditText editText = findViewById(R.id.diary_fifth_write_editText);
+        ImageButton cancel = findViewById(R.id.second_write_cancel);
+        Button preBtn = findViewById(R.id.diary_second_write_pre_btn);
+        Button nextBtn = findViewById(R.id.diary_second_write_next_btn);
+        EditText editText = findViewById(R.id.diary_second_write_editText);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +36,7 @@ public class fifthWriteActivity extends AppCompatActivity {
         preBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(fifthWriteActivity.this, fourthWriteActivity.class);
+                Intent intent = new Intent(secondWriteActivity.this, firstWriteActivity.class);
                 startActivity(intent);
 
                 finish();
@@ -49,16 +46,12 @@ public class fifthWriteActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String behavior = editText.getText().toString();
-                if(!behavior.equals("")) {
-
-                    Intent intent = new Intent(fifthWriteActivity.this, sixthWriteActivity.class);
+                String event = editText.getText().toString();
+                if(!event.equals("")) {
+                    Intent intent = new Intent(secondWriteActivity.this, thirdWriteActivity.class);
 
                     intent.putExtra("emotion", emotion);
                     intent.putExtra("event", event);
-                    intent.putExtra("thought", thought);
-                    intent.putExtra("emotionSpecific", emotionSpecific);
-                    intent.putExtra("behavior", behavior);
 
                     startActivity(intent);
 
