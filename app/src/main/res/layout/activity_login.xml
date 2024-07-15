@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="143dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:text="For a Borderless Future"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="당신곁엔 언제나"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,9 +22,10 @@
         android:id="@+id/login_imageView"
         android:layout_width="204dp"
         android:layout_height="54dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="164dp"
         android:src="@drawable/tv_beyondb"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,21 +52,23 @@
 
     <EditText
         android:id="@+id/login_email"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
         android:inputType="textEmailAddress"
-        android:hint="email adress"
+        android:hint="이메일 주소"
         app:layout_constraintBottom_toTopOf="@+id/login_line1"
         app:layout_constraintStart_toStartOf="@+id/login_line1" />
 
     <EditText
         android:id="@+id/login_password"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:layout_height="wrap_content"
         android:background="@null"
         android:inputType="textPassword"
-        android:hint="password"
+        android:hint="비밀 번호"
         app:layout_constraintBottom_toTopOf="@+id/login_line2"
         app:layout_constraintStart_toStartOf="@+id/login_line2" />
 
@@ -84,8 +87,8 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_round_button"
             android:backgroundTint="#86D780"
-            android:fontFamily="@font/pretendard_semibold"
-            android:text="Log In"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="로그인"
             android:textColor="#FFFFFF"
             android:textSize="20dp" />
 
@@ -95,8 +98,8 @@
         android:id="@+id/login_new_account_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendard_regular"
-        android:text="Create New Account"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="새계정 만들기"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -58,38 +58,42 @@
 
     <EditText
         android:id="@+id/sign_up_username"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="username"
+        android:hint="이름"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_line1"
         app:layout_constraintStart_toStartOf="@+id/sign_up_line1" />
 
     <EditText
         android:id="@+id/sign_up_age"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="age"
+        android:hint="나이"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_line2"
         app:layout_constraintStart_toStartOf="@+id/sign_up_line2" />
 
     <EditText
         android:id="@+id/sign_up_email"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="email adrress"
+        android:hint="이메일 주소"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_line3"
         app:layout_constraintStart_toStartOf="@+id/sign_up_line3" />
 
     <EditText
         android:id="@+id/sign_up_password"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:hint="password"
+        android:hint="비밀 번호"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_line4"
         app:layout_constraintStart_toStartOf="@+id/sign_up_line4" />
@@ -109,8 +113,8 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_round_button"
             android:backgroundTint="#86D780"
-            android:fontFamily="@font/pretendard_semibold"
-            android:text="Sign Up"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="회원가입"
             android:textColor="#FFFFFF"
             android:textSize="20dp" />
 
