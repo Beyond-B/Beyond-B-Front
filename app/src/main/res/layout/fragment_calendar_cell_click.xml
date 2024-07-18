@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/bg_paper">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:fontFamily="@font/pretendard_medium"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:text="February 20"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,9 +42,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="70dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:text="Q1. What happened today?"
-        android:textSize="15dp"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q1. 오늘 무슨 일이 있었나요?"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diary_today" />
 
@@ -65,9 +65,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:text="Q2. What did you think?"
-        android:textSize="15dp"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q2. 어떤 생각이 들었나요?"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diary_first_answer" />
 
@@ -88,9 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:text="Q3. What emotions did you feel?"
-        android:textSize="15dp"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q3. 어떤 기분이 들었나요?"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diary_second_answer" />
 
@@ -111,9 +111,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:text="Q4. How did you act when it happened?"
-        android:textSize="15dp"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q4. 그래서 어떻게 행동했나요?"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diary_third_answer" />
 
@@ -134,9 +134,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/pretendard_medium"
-        android:text="Q5. What were the results?"
-        android:textSize="15dp"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q5. 결과가 어땠나요?"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/diary_fourth_answer" />
 
