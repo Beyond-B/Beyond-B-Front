@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/bg_paper">
 
     <ImageButton
         android:id="@+id/sixth_write_cancel"
@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:fontFamily="@font/pretendard_light"
-        android:text="Q. What were the results?"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q. 결과가 어땠나요?"
         android:textSize="25dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,9 +64,9 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_round_stroke_button"
-            android:text="prev"
-            android:fontFamily="@font/pretendard_extrabold"
-            android:textSize="18dp"
+            android:text="이전"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:textSize="20dp"
             android:textColor = "#86D780" />
 
         <View
@@ -80,10 +80,10 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_round_button"
             android:backgroundTint="#86D780"
-            android:fontFamily="@font/pretendard_extrabold"
-            android:text="done"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="완료"
             android:textColor="#FFFFFF"
-            android:textSize="18dp" />
+            android:textSize="20dp" />
 
         <View
             android:layout_weight="1"

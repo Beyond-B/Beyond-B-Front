@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="8dp"
-        android:background="@color/white"/>
+        android:background="@drawable/bg_paper"/>
 
     <View
         android:layout_width="wrap_content"

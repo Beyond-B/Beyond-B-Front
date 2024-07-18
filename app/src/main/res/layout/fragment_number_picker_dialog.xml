@@ -10,13 +10,13 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendard_semibold"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:paddingLeft="30dp"
         android:paddingTop="15dp"
         android:paddingBottom="10dp"
-        android:text="Edit Age"
+        android:text="연령 수정"
         android:textAlignment="textStart"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <NumberPicker
         android:id="@+id/numberPicker"
@@ -33,11 +33,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/pretendard_semibold"
-            android:text="Close"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="닫기"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnYes"
@@ -45,11 +45,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/pretendard_semibold"
-            android:text="Confirm"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="수정"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

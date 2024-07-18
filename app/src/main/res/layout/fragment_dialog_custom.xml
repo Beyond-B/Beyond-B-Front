@@ -10,7 +10,7 @@
         android:id="@+id/dialogMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendard_medium"
+        android:fontFamily="@font/ownglyph_ryuttung"
         android:padding="30dp"
         android:text=""
         android:textAlignment="center"
@@ -26,11 +26,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/pretendard_semibold"
-            android:text="No"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="아니요"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnYes"
@@ -38,11 +38,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/pretendard_semibold"
-            android:text="Yes"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="예"
             android:textColor="#86D780"
             android:textColorHighlight="#007882"
-            android:textSize="15sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

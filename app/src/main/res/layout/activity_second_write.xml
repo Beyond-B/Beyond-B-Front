@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/bg_paper">
 
     <ImageButton
         android:id="@+id/second_write_cancel"
@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:fontFamily="@font/pretendard_light"
-        android:text="Q. What happened today?"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q. 오늘 무슨일이 있었나요?"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +61,9 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_round_stroke_button"
-            android:text="prev"
-            android:fontFamily="@font/pretendard_extrabold"
-            android:textSize="18dp"
+            android:text="이전"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:textSize="20dp"
             android:textColor = "#86D780" />
 
         <View
@@ -77,10 +77,10 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_round_button"
             android:backgroundTint="#86D780"
-            android:fontFamily="@font/pretendard_extrabold"
-            android:text="next"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="다음"
             android:textColor="#FFFFFF"
-            android:textSize="18dp" />
+            android:textSize="20dp" />
 
         <View
             android:layout_weight="1"

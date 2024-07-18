@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/bg_paper">
 
     <ImageButton
         android:id="@+id/fifth_write_cancel"
@@ -19,11 +19,11 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="220dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:fontFamily="@font/pretendard_light"
-        android:text="Q. How did you act when it happened?"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="Q. 그래서 어떻게 행동했나요?"
         android:textSize="25dp"
         android:gravity="center"
         android:lineSpacingMultiplier="1.5"
@@ -63,9 +63,9 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_round_stroke_button"
-            android:text="prev"
-            android:fontFamily="@font/pretendard_extrabold"
-            android:textSize="18dp"
+            android:text="이전"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:textSize="20dp"
             android:textColor = "#86D780" />
 
         <View
@@ -79,10 +79,10 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_round_button"
             android:backgroundTint="#86D780"
-            android:fontFamily="@font/pretendard_extrabold"
-            android:text="next"
+            android:fontFamily="@font/ownglyph_ryuttung"
+            android:text="다음"
             android:textColor="#FFFFFF"
-            android:textSize="18dp" />
+            android:textSize="20dp" />
 
         <View
             android:layout_weight="1"
