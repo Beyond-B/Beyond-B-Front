@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@drawable/bg_paper"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -9,6 +9,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background=""
         android:paddingBottom="30dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,7 +36,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="50dp"
-                android:fontFamily="@font/pretendard_medium"
+                android:fontFamily="@font/ownglyph_ryuttung"
                 android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,10 +81,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="50dp"
-                android:fontFamily="@font/pretendard_light"
+                android:fontFamily="@font/ownglyph_ryuttung"
                 android:text="About"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@id/txDetailTitle"
+                app:layout_constraintTop_toBottomOf="@id/card" />
+
+            <TextView
+                android:id="@+id/txLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/ownglyph_ryuttung"
+                android:text="🔗도서 링크"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/txAbout"
                 app:layout_constraintTop_toBottomOf="@id/card" />
 
             <TextView
@@ -107,7 +120,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="date"
+                android:fontFamily="@font/ownglyph_ryuttung"
+                android:text="날짜"
+                android:textSize="15dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="@id/view4"
                 app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +155,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="mood"
+                android:fontFamily="@font/ownglyph_ryuttung"
+                android:text="기분"
+                android:textSize="15dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/view4"
@@ -171,15 +188,14 @@
 
             <TextView
                 android:id="@+id/txQuiz1T"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="27dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/pretendard_light"
-                android:text="first solved date"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@id/view4"
-                app:layout_constraintStart_toStartOf="@id/txQuiz2T"
+                android:fontFamily="@font/ownglyph_ryuttung"
+                android:text="처음 푼 날"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/view5"
+                android:layout_marginStart="30dp"
                 app:layout_constraintTop_toTopOf="@id/view5" />
 
             <ImageView
@@ -210,13 +226,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/pretendard_light"
-                android:text="second solved date"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@id/view4"
-                app:layout_constraintHorizontal_bias="0.986"
-                app:layout_constraintStart_toStartOf="parent"
+                android:fontFamily="@font/ownglyph_ryuttung"
+                android:text="두번째로 푼 날"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/view5"
+                android:layout_marginStart="30dp"
                 app:layout_constraintTop_toBottomOf="@id/txQuiz1T" />
 
             <ImageView
@@ -241,15 +255,14 @@
 
             <TextView
                 android:id="@+id/txQuiz3T"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/pretendard_light"
-                android:text="third solved date"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@id/view4"
-                app:layout_constraintStart_toStartOf="@id/txQuiz2T"
+                android:fontFamily="@font/ownglyph_ryuttung"
+                android:text="세번째로 푼 날"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/view5"
+                android:layout_marginStart="30dp"
                 app:layout_constraintTop_toBottomOf="@id/txQuiz2T" />
 
             <ImageView
@@ -280,10 +293,10 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="50dp"
                 android:background="@drawable/btn_custom"
-                android:fontFamily="@font/pretendard_extrabold"
-                android:text="Go to Quiz"
+                android:fontFamily="@font/ownglyph_ryuttung"
+                android:text="퀴즈 풀기"
                 android:textColor="#ffffff"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:cornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

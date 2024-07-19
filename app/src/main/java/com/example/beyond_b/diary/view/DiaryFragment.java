@@ -35,6 +35,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -164,7 +165,7 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     private String monthFromDate(LocalDate date){
         DateTimeFormatter formatter = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            formatter = DateTimeFormatter.ofPattern("MMM");
+            formatter = DateTimeFormatter.ofPattern("MMM").withLocale(Locale.KOREAN);; //로케일 사용해서 한국 달력으로 변환
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return date.format(formatter);
@@ -176,7 +177,7 @@ public class DiaryFragment extends Fragment implements CalendarAdapter.onItemLis
     private String monthFromDateNum(LocalDate date){
         DateTimeFormatter formatter = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            formatter = DateTimeFormatter.ofPattern("MM");
+            formatter = DateTimeFormatter.ofPattern("MM").withLocale(Locale.KOREAN);;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return date.format(formatter);

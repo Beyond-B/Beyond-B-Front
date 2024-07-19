@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@drawable/bg_paper">
 
     <ImageButton
         android:id="@+id/first_write_cancel"
@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:fontFamily="@font/pretendard_light"
-        android:text="Choose your feelings today"
+        android:fontFamily="@font/ownglyph_ryuttung"
+        android:text="오늘 당신의 기분을 골라주세요!"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
